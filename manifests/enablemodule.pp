@@ -7,8 +7,8 @@ define php::enablemodule (
                           ) {
 
   file { "${confbase}/${instance}/conf.d/${priotity}-${modulename}.ini":
-  	ensure => "${confbase}/mods-available/${$modulename}.ini",
-  	force => true,
-  	notify => $notify,
+    ensure => "${confbase}/mods-available/${modulename}.ini",
+    force  => true,
+    notify => $notify,
   }
 }
