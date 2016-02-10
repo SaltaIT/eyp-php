@@ -1,7 +1,7 @@
 define php::pecl  (
         $modulename=$name,
         $dependencies=undef,
-        $logdir="/var/log/puppet",
+        $logdir='/var/log/puppet',
         $enablefile=undef,
       ) {
   Exec {
@@ -33,8 +33,7 @@ define php::pecl  (
     command  => "bash -c 'while             :;do echo;done | pecl install ${modulename}' > ${logdir}/.pecl.install.${modulename}.log",
     require  => Package[[$dependencies, $php::params::pecl_dependencies]],
     #creates => "${logdir}/.pecl.install.${modulename}.log",
-    onlyif   => 'pecl list | grep -E \'\b${modulename}\b\'',
-
+    unless   => "pecl list | grep -E \'\b${modulename}\b\'",
   }
 
   file { "/etc/php5/mods-available/${modulename}.ini":

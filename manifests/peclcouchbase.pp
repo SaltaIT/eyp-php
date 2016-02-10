@@ -24,7 +24,7 @@ define php::peclcouchbase   (
 
               apt::source { 'couchbase':
                 location => 'http://packages.couchbase.com/ubuntu',
-                release  => "${::lsbdistcodename}",
+                release  => $::lsbdistcodename,
                 repos    => "${::lsbdistcodename}/main",
               }
 

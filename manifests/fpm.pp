@@ -49,7 +49,7 @@ define php::fpm (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template("php/phpfpmconf.erb"),
+    content => template("${module_name}/phpfpmconf.erb"),
     notify  => Service['php5-fpm'],
     require => Package[$php::params::phpfpmpackage],
   }
@@ -69,7 +69,7 @@ define php::fpm (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => template("php/phpini.erb"),
+      content => template("${module_name}/phpini.erb"),
       notify  => Service['php5-fpm'],
       require => Package[$php::params::phpfpmpackage],
     }
@@ -77,8 +77,8 @@ define php::fpm (
 
   #TODO:rewrite for multiple daemon
   service {'php5-fpm':
+    ensure  => 'running',
     enable  => true,
-    ensure  => "running",
     require => File[ [ "${confbase}/php-fpm.conf", "${confbase}/php.ini" ] ],
   }
 }

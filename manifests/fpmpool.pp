@@ -36,9 +36,9 @@ define php::fpmpool  (
   validate_integer($maxchildren, undef, 0)
   validate_integer($maxrequestsperchild, undef, 0)
 
-  validate_re($pm, [ '^dynamic$', '^static$', '^ondemand$' ], "Not a valid PM: $pm")
+  validate_re($pm, [ '^dynamic$', '^static$', '^ondemand$' ], "Not a valid PM: ${pm}")
 
-  if($pm=="dynamic")
+  if($pm=='dynamic')
   {
     validate_integer($minspareservers, undef, 1)
     validate_integer($maxspareservers, undef, 1)
@@ -49,7 +49,7 @@ define php::fpmpool  (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template("php/fpmpoolconf.erb"),
+    content => template("${module_name}/fpmpoolconf.erb"),
     notify  => Service['php5-fpm'],
     require => Package[$php::params::phpfpmpackage],
   }
@@ -69,7 +69,7 @@ define php::fpmpool  (
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
-      source => "puppet:///modules/${module_name}/check_phpfpm_running_workers.sh",
+      source  => "puppet:///modules/${module_name}/check_phpfpm_running_workers.sh",
     }
 
   }

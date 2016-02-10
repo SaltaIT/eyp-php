@@ -29,6 +29,7 @@ define php::maxmind   (
     {
       $os_specific_dependencies=Apt::Ppa['ppa:maxmind/ppa']
     }
+    default: { fail("Unsupported OS family: ${::osfamily}")}
   }
 
   package{ $maxmind_dependencies:
@@ -41,7 +42,7 @@ define php::maxmind   (
     refreshonly => true,
   }
 
-  file { "${installdir}":
+  file { $installdir:
     ensure  => 'directory',
     group   => 'root',
     owner   => 'root',
