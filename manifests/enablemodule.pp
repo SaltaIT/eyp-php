@@ -1,6 +1,6 @@
 define php::enablemodule (
-                            $modulename=$name,
                             $instance,
+                            $modulename=$name,
                             $confbase=$php::params::confbase,
                             $notify=undef,
                             $priotity='99',
