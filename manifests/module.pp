@@ -9,7 +9,7 @@ define php::module   (
     ntteam::tag{ "php::module::${modulename}": }
   }
 
-  if($modulename=="php5-phalcon")
+  if($modulename=='php5-phalcon')
   {
     case $::osfamily
     {
@@ -17,11 +17,12 @@ define php::module   (
       {
         $packagedependency=Apt::Ppa['ppa:phalcon/stable']
       }
+      default: { fail("php5-phalcon unsupported on ${::osfamily}")}
     }
   }
 
   package { $modulename:
-    ensure => 'installed',
+    ensure  => 'installed',
     require => $packagedependency,
   }
 
@@ -30,7 +31,7 @@ define php::module   (
     if $modulename =~ /^php[0-9]*-(.*)/
     {
       file { $enablefile:
-        ensure => "/etc/php5/mods-available/$1.ini",
+        ensure => "/etc/php5/mods-available/${1}.ini",
       }
     }
   }

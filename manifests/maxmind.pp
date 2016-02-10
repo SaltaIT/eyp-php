@@ -52,9 +52,9 @@ define php::maxmind   (
 
   exec { "git clone maxmind ${installdir}":
     command => 'git clone https://github.com/maxmind/MaxMind-DB-Reader-php.git',
-    cwd     => "${installdir}",
+    cwd     => $installdir,
     creates => "${installdir}/MaxMind-DB-Reader-php/ext/config.m4",
-    require => File["${installdir}"],
+    require => File[$installdir],
     timeout => 0,
   }
 
