@@ -14,7 +14,7 @@ class php::params () {
       {
         /^14.*$/:
         {
-          $phpdependencies=['php-pear']
+          $phpdependencies=[ 'php-pear', 'php-http' ]
           $phpfpmpackage=[ 'php5-fpm', 'libfcgi0ldbl' ]
           $phpcli=[ 'php5-cli' ]
           $phpapachepackage=[ 'libapache2-mod-php5' ]
