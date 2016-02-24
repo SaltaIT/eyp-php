@@ -29,6 +29,7 @@ define php::maxmind   (
     {
       $os_specific_dependencies=Apt::Ppa['ppa:maxmind/ppa']
     }
+    default: { fail('Unsupported')  }
   }
 
   package{ $maxmind_dependencies:
@@ -96,7 +97,8 @@ define php::maxmind   (
   if($enablefile)
   {
     file { $enablefile:
-      ensure => '/etc/php5/mods-available/maxminddb.ini',
+      ensure => link,
+      target => '/etc/php5/mods-available/maxminddb.ini',
     }
   }
 

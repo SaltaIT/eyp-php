@@ -17,6 +17,7 @@ define php::module   (
       {
       $packagedependency=Apt::Ppa['ppa:phalcon/stable']
       }
+      default: { fail('Unsupported')  }
     }
   }
 
@@ -30,7 +31,8 @@ define php::module   (
     if $modulename =~ /^php[0-9]*-(.*)/
     {
       file { $enablefile:
-      ensure => "/etc/php5/mods-available/${1}.ini",
+        ensure => link,
+        target => "/etc/php5/mods-available/${1}.ini",
       }
     }
   }

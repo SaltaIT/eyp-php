@@ -39,7 +39,7 @@ class php   (
       $phpcli=true,
       $customini=undef,
       $confbase=$php::params::confbase_cli,
-    ) inherits params{
+    ) inherits php::params{
 
   if defined(Class['ntteam'])
   {

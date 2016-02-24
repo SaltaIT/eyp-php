@@ -49,7 +49,8 @@ define php::pecl  (
   if($enablefile)
   {
     file { $enablefile:
-      ensure => "/etc/php5/mods-available/${modulename}.ini",
+      ensure => link,
+      target => "/etc/php5/mods-available/${modulename}.ini",
     }
   }
 

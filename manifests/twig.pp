@@ -104,7 +104,8 @@ define php::twig   (
   if($enablefile)
   {
     file { $enablefile:
-      ensure => '/etc/php5/mods-available/twig.ini',
+      ensure => link,
+      target => '/etc/php5/mods-available/twig.ini',
     }
   }
 }

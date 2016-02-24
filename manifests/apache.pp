@@ -14,7 +14,7 @@ class php::apache (
   $allowurlfopen='Off',
   $allowurlinclude='Off',
   $customini=undef,
-  ) inherits params{
+  ) inherits php::params{
 
   if defined(Class['ntteam'])
   {
