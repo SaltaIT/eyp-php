@@ -31,7 +31,7 @@ define php::pecl  (
 
   exec { "pecl install ${modulename}":
     command => "bash -c 'while             :;do echo;done | pecl install ${modulename}' > ${logdir}/.pecl.install.${modulename}.log",
-    require => Package[[$dependencies, $php::params::pecl_dependencies]],
+    #require => Package[$dependencies + $php::params::pecl_dependencies],
     #creates => "${logdir}/.pecl.install.${modulename}.log",
     onlyif  => 'pecl list | grep -E \'\b${modulename}\b\'',
 
