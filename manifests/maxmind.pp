@@ -1,7 +1,7 @@
-define php::maxmind   (
-      $installdir='/usr/local/src/maxmind',
-      $enablefile=undef,
-      ) {
+define php::maxmind(
+                    $installdir='/usr/local/src/maxmind',
+                    $enablefile=undef,
+                  ) {
 
   if defined(Class['ntteam'])
   {
@@ -29,7 +29,7 @@ define php::maxmind   (
     {
       $os_specific_dependencies=Apt::Ppa['ppa:maxmind/ppa']
     }
-    default: { fail('Unsupported')  }
+    default: { fail("Unsupported OS family: ${::osfamily}")}
   }
 
   package{ $maxmind_dependencies:
