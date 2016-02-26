@@ -1,12 +1,7 @@
-define php::maxmind   (
-<<<<<<< HEAD
-        $installdir='/usr/local/src/maxmind',
-        $enablefile=undef,
-=======
-      $installdir='/usr/local/src/maxmind',
-      $enablefile=undef,
->>>>>>> db3233f23e4599fa83756bb0bf4613bcf073c406
-      ) {
+define php::maxmind(
+                    $installdir='/usr/local/src/maxmind',
+                    $enablefile=undef,
+                  ) {
 
   if defined(Class['ntteam'])
   {
