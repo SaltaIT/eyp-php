@@ -1,6 +1,6 @@
-define php::fpm (
+class php::apache (
   $instancename=$name,
-  $confbase=$php::params::confbase_fpm,
+  $confbase=$php::params::confbase_apache,
   #PHP
   $php_loglevel=$php::params::php_loglevel_default,
   $user=$php::params::user_default,
@@ -18,17 +18,14 @@ define php::fpm (
   $short_open_tag=$php::params::short_open_tag_default,
   $serialize_precision=$php::params::serialize_precision_default,
   $max_input_time=$php::params::max_input_time_default,
-  $errorlog=$php::params::fpm_errorlog_default,
+  $errorlog=$php::params::apache_errorlog_default,
   $session_save_path=$php::params::session_save_path_default,
   $session_gc_probability=$php::params::session_gc_probability_default,
-  #FPM
-  $processmax=$php::params::processmax_default,
-  $processpriority=$php::params::processpriority_default,
-  ) {
+  ) inherits php::params{
 
   if defined(Class['ntteam'])
   {
-  ntteam::tag{ 'php::fpm': }
+    ntteam::tag{ 'php::apache': }
   }
 
   validate_string($max_input_vars)
@@ -47,53 +44,33 @@ define php::fpm (
 
   validate_re($php_loglevel, [ '^alert$', '^error$', '^warning$', '^notice$', '^debug$' ], "Not a valid loglevel: ${php_loglevel}")
 
-  validate_integer($processmax, 0)
-  validate_integer($processpriority, 20, -19)
-
   if defined(Class['ntteam'])
   {
-  ntteam::tag{ 'phpfpm': }
+    ntteam::tag{ 'phpapache': }
   }
 
-  package { $php::params::phpfpmpackage:
-  ensure => 'installed',
-  }
-
-  file { "${confbase}/php-fpm.conf":
-  ensure  => 'present',
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  content => template('php/phpfpmconf.erb'),
-  notify  => Service['php5-fpm'],
-  require => Package[$php::params::phpfpmpackage],
+  package { $php::params::phpapachepackage:
+    ensure => 'installed',
   }
 
   if($customini)
   {
-  file { "${confbase}/php.ini":
-  ensure => $customini,
-  force  => true,
-  notify => Service['php5-fpm'],
-  }
+    file { "${confbase}/php.ini":
+      ensure => $customini,
+      force  => true,
+      notify => Service['apache2'],
+    }
   }
   else
   {
-  file { "${confbase}/php.ini":
-  ensure  => 'present',
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  content => template('php/phpini.erb'),
-  notify  => Service['php5-fpm'],
-  require => Package[$php::params::phpfpmpackage],
-  }
-  }
-
-  #TODO:rewrite for multiple daemon
-  service {'php5-fpm':
-  ensure  => 'running',
-  enable  => true,
-  require => File[ [ "${confbase}/php-fpm.conf", "${confbase}/php.ini" ] ],
+    file { "${confbase}/php.ini":
+      ensure  => 'present',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('php/phpini.erb'),
+      notify  => Service['apache2'],
+      require => Package[$php::params::phpapachepackage],
+      }
   }
 }

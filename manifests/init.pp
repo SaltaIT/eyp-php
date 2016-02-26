@@ -35,36 +35,34 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class php 	(
-			$phpcli=true,
-			$customini=undef,
-			$confbase=$php::params::confbase_cli,
-		) inherits params{
+class php   (
+      $phpcli=true,
+      $customini=undef,
+      $confbase=$php::params::confbase_cli,
+    ) inherits php::params{
 
-	if defined(Class['ntteam'])
-	{
-		ntteam::tag{ 'php': }
-	}
+  if defined(Class['ntteam'])
+  {
+    ntteam::tag{ 'php': }
+  }
 
-	package { $php::params::phpdependencies:
-		ensure => 'installed',
-	}
+  package { $php::params::phpdependencies:
+    ensure => 'installed',
+  }
 
-	if($phpcli)
-	{
-		package { $php::params::phpcli:
-			ensure => 'installed',
-			require => Package[$php::params::phpdependencies],
-		}
+  if($phpcli)
+  {
+    package { $php::params::phpcli:
+      ensure  => 'installed',
+      require => Package[$php::params::phpdependencies],
+    }
 
-		if($customini)
-		{
-			file { "${confbase}/php.ini":
-				ensure => $customini,
-				force => true,
-			}
-		}
-	}
-
-
+    if($customini)
+    {
+      file { "${confbase}/php.ini":
+      ensure => $customini,
+      force  => true,
+      }
+    }
+  }
 }
