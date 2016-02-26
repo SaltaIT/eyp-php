@@ -1,10 +1,11 @@
 # == Class: php
 #
-class php   (
-      $phpcli=true,
-      $customini=undef,
-      $confbase=$php::params::confbase_cli,
-    ) inherits params{
+class php(
+          $phpcli=true,
+          $customini=undef,
+          $confbase=$php::params::confbase_cli,
+        ) inherits php::params{
+
 
   if defined(Class['ntteam'])
   {
@@ -25,11 +26,9 @@ class php   (
     if($customini)
     {
       file { "${confbase}/php.ini":
-        ensure => $customini,
-        force  => true,
+      ensure => $customini,
+      force  => true,
       }
     }
   }
-
-
 }
