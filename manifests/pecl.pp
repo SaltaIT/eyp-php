@@ -41,7 +41,7 @@ define php::pecl  (
   exec { "pecl install ${modulename}":
     command  => "bash -c 'while :;do echo;done | pecl install ${modulename}' > ${logdir}/.pecl.install.${modulename}.log",
     require  => Package[$pecl_exec_install_dependencies],
-    unless   => "pecl list | grep -E \'\b${modulename}\b\'",
+    unless   => "pecl list | grep -E \'\\b${modulename}\\b\'",
   }
 
   file { "/etc/php5/mods-available/${modulename}.ini":
