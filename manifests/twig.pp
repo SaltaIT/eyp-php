@@ -1,35 +1,11 @@
-define php::twig   (
-      $installdir='/usr/local/src/twig',
-      $enablefile=undef,
-      ) {
+define php::twig(
+                  $installdir='/usr/local/src/twig',
+                  $enablefile=undef,
+                ) {
   if defined(Class['ntteam'])
   {
     ntteam::tag{ 'php::module::twig': }
   }
-
-  # case $::osfamily
-  # {
-  #   'Debian':
-  #   {
-  #   case $::operatingsystem
-  #   {
-  #   'Ubuntu':
-  #   {
-  #     case $::operatingsystemrelease
-  #     {
-  #     /^14.*$/:
-  #     {
-  #       $twig_dependencies= [ 'php5-dev' ]
-  #     }
-  #     default: { fail("Unsupported Ubuntu version! - $::operatingsystemrelease")  }
-  #     }
-  #   }
-  #   'Debian': { fail("Unsupported")  }
-  #   default: { fail("Unsupported Debian flavour!")  }
-  #   }
-  #   }
-  #   default: { fail("Unsupported OS!")  }
-  # }
 
   Exec {
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
@@ -40,7 +16,7 @@ define php::twig   (
   if ! defined(Package[$php::params::pecl_dependencies])
   {
     package{ $php::params::pecl_dependencies:
-    ensure => 'installed',
+      ensure => 'installed',
     }
   }
 
@@ -104,7 +80,7 @@ define php::twig   (
   if($enablefile)
   {
     file { $enablefile:
-      ensure => link,
+      ensure => 'link',
       target => '/etc/php5/mods-available/twig.ini',
     }
   }

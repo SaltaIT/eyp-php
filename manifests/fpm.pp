@@ -1,34 +1,33 @@
 define php::fpm (
-  $instancename=$name,
-  $confbase=$php::params::confbase_fpm,
-  #PHP
-  $php_loglevel=$php::params::php_loglevel_default,
-  $user=$php::params::user_default,
-  $group=$php::params::group_default,
-  $exposephp=$php::params::exposephp_default,
-  $maxexecutiontime=$php::params::maxexecutiontime_default,
-  $memorylimit=$php::params::memorylimit_default,
-  $maxupload=$php::params::maxupload_default,
-  $maxpostsize=$php::params::maxpostsize_default,
-  $timezone=$php::params::timezone_default,
-  $allowurlfopen=$php::params::allowurlfopen_default,
-  $allowurlinclude=$php::params::allowurlinclude_default,
-  $customini=$php::params::customini_default,
-  $max_input_vars=$php::params::max_input_vars_default,
-  $short_open_tag=$php::params::short_open_tag_default,
-  $serialize_precision=$php::params::serialize_precision_default,
-  $max_input_time=$php::params::max_input_time_default,
-  $errorlog=$php::params::fpm_errorlog_default,
-  $session_save_path=$php::params::session_save_path_default,
-  $session_gc_probability=$php::params::session_gc_probability_default,
-  #FPM
-  $processmax=$php::params::processmax_default,
-  $processpriority=$php::params::processpriority_default,
-  ) {
-
+                  $instancename=$name,
+                  $confbase=$php::params::confbase_fpm,
+                  #PHP
+                  $php_loglevel=$php::params::php_loglevel_default,
+                  $user=$php::params::user_default,
+                  $group=$php::params::group_default,
+                  $exposephp=$php::params::exposephp_default,
+                  $maxexecutiontime=$php::params::maxexecutiontime_default,
+                  $memorylimit=$php::params::memorylimit_default,
+                  $maxupload=$php::params::maxupload_default,
+                  $maxpostsize=$php::params::maxpostsize_default,
+                  $timezone=$php::params::timezone_default,
+                  $allowurlfopen=$php::params::allowurlfopen_default,
+                  $allowurlinclude=$php::params::allowurlinclude_default,
+                  $customini=$php::params::customini_default,
+                  $max_input_vars=$php::params::max_input_vars_default,
+                  $short_open_tag=$php::params::short_open_tag_default,
+                  $serialize_precision=$php::params::serialize_precision_default,
+                  $max_input_time=$php::params::max_input_time_default,
+                  $errorlog=$php::params::fpm_errorlog_default,
+                  $session_save_path=$php::params::session_save_path_default,
+                  $session_gc_probability=$php::params::session_gc_probability_default,
+                  #FPM
+                  $processmax=$php::params::processmax_default,
+                  $processpriority=$php::params::processpriority_default,
+                ) {
   if defined(Class['ntteam'])
   {
-  ntteam::tag{ 'php::fpm': }
+    ntteam::tag{ 'php::fpm': }
   }
 
   validate_string($max_input_vars)
@@ -52,48 +51,48 @@ define php::fpm (
 
   if defined(Class['ntteam'])
   {
-  ntteam::tag{ 'phpfpm': }
+    ntteam::tag{ 'phpfpm': }
   }
 
   package { $php::params::phpfpmpackage:
-  ensure => 'installed',
+    ensure => 'installed',
   }
 
   file { "${confbase}/php-fpm.conf":
-  ensure  => 'present',
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  content => template('php/phpfpmconf.erb'),
-  notify  => Service['php5-fpm'],
-  require => Package[$php::params::phpfpmpackage],
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('php/phpfpmconf.erb'),
+    notify  => Service['php5-fpm'],
+    require => Package[$php::params::phpfpmpackage],
   }
 
   if($customini)
   {
-  file { "${confbase}/php.ini":
-  ensure => $customini,
-  force  => true,
-  notify => Service['php5-fpm'],
-  }
+    file { "${confbase}/php.ini":
+      ensure => $customini,
+      force  => true,
+      notify => Service['php5-fpm'],
+    }
   }
   else
   {
-  file { "${confbase}/php.ini":
-  ensure  => 'present',
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  content => template('php/phpini.erb'),
-  notify  => Service['php5-fpm'],
-  require => Package[$php::params::phpfpmpackage],
-  }
+    file { "${confbase}/php.ini":
+      ensure  => 'present',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('php/phpini.erb'),
+      notify  => Service['php5-fpm'],
+      require => Package[$php::params::phpfpmpackage],
+    }
   }
 
   #TODO:rewrite for multiple daemon
   service {'php5-fpm':
-  ensure  => 'running',
-  enable  => true,
-  require => File[ [ "${confbase}/php-fpm.conf", "${confbase}/php.ini" ] ],
+    ensure  => 'running',
+    enable  => true,
+    require => File[ [ "${confbase}/php-fpm.conf", "${confbase}/php.ini" ] ],
   }
 }

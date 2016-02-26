@@ -1,8 +1,8 @@
-define php::module   (
-      $modulename=$name,
-      $enablefile=undef,
-      $ensure='installed', #TODO
-      ) {
+define php::module(
+                    $modulename=$name,
+                    $enablefile=undef,
+                    $ensure='installed', #TODO
+                  ) {
 
   if defined(Class['ntteam'])
   {
@@ -15,9 +15,9 @@ define php::module   (
     {
       'Debian':
       {
-      $packagedependency=Apt::Ppa['ppa:phalcon/stable']
+        $packagedependency=Apt::Ppa['ppa:phalcon/stable']
       }
-      default: { fail('Unsupported')  }
+      default: { fail("php5-phalcon unsupported on ${::osfamily}")}
     }
   }
 
