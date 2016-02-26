@@ -1,8 +1,8 @@
-define php::module   (
-        $modulename=$name,
-        $enablefile=undef,
-        $ensure='installed', #TODO
-      ) {
+define php::module(
+                    $modulename=$name,
+                    $enablefile=undef,
+                    $ensure='installed', #TODO
+                  ) {
 
   if defined(Class['ntteam'])
   {
@@ -31,7 +31,8 @@ define php::module   (
     if $modulename =~ /^php[0-9]*-(.*)/
     {
       file { $enablefile:
-        ensure => "/etc/php5/mods-available/${1}.ini",
+        ensure => link,
+        target => "/etc/php5/mods-available/${1}.ini",
       }
     }
   }

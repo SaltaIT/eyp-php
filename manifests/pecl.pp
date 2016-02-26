@@ -22,17 +22,25 @@ define php::pecl  (
     }
   }
 
-  if ! defined(Package[$php::params::pecl_dependencies])
+  if($php::params::pecl_dependencies!=undef)
   {
-    package{ $php::params::pecl_dependencies:
-        ensure => 'installed',
+    if ! defined(Package[$php::params::pecl_dependencies])
+    {
+      package{ $php::params::pecl_dependencies:
+          ensure => 'installed',
+      }
     }
+    $pecl_exec_install_dependencies=[$dependencies, $php::params::pecl_dependencies]
+  }
+  else
+  {
+    $pecl_exec_install_dependencies=$dependencies
   }
 
+
   exec { "pecl install ${modulename}":
-    command  => "bash -c 'while             :;do echo;done | pecl install ${modulename}' > ${logdir}/.pecl.install.${modulename}.log",
-    require  => Package[[$dependencies, $php::params::pecl_dependencies]],
-    #creates => "${logdir}/.pecl.install.${modulename}.log",
+    command  => "bash -c 'while :;do echo;done | pecl install ${modulename}' > ${logdir}/.pecl.install.${modulename}.log",
+    require  => Package[$pecl_exec_install_dependencies],
     unless   => "pecl list | grep -E \'\b${modulename}\b\'",
   }
 
@@ -48,7 +56,8 @@ define php::pecl  (
   if($enablefile)
   {
     file { $enablefile:
-      ensure => "/etc/php5/mods-available/${modulename}.ini",
+      ensure => link,
+      target => "/etc/php5/mods-available/${modulename}.ini",
     }
   }
 

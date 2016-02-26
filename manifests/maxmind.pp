@@ -1,6 +1,11 @@
 define php::maxmind   (
+<<<<<<< HEAD
         $installdir='/usr/local/src/maxmind',
         $enablefile=undef,
+=======
+      $installdir='/usr/local/src/maxmind',
+      $enablefile=undef,
+>>>>>>> db3233f23e4599fa83756bb0bf4613bcf073c406
       ) {
 
   if defined(Class['ntteam'])
@@ -17,7 +22,7 @@ define php::maxmind   (
   if ! defined(Package[$php::params::pecl_dependencies])
   {
     package{ $php::params::pecl_dependencies:
-        ensure => 'installed',
+      ensure => 'installed',
     }
   }
 
@@ -62,9 +67,7 @@ define php::maxmind   (
     command     => '/usr/bin/phpize5',
     cwd         => "${installdir}/MaxMind-DB-Reader-php/ext",
     creates     => "${installdir}/MaxMind-DB-Reader-php/ext/configure",
-    require     => [ Exec["git clone maxmind ${installdir}"],
-                      Package[ [ $maxmind_dependencies, $php::params::pecl_dependencies ] ]
-                      ],
+    require     => [ Exec["git clone maxmind ${installdir}"], Package[ [ $maxmind_dependencies, $php::params::pecl_dependencies ] ] ],
     timeout     => 0,
     environment => ['SHELL=/bin/bash'],
   }
@@ -99,7 +102,8 @@ define php::maxmind   (
   if($enablefile)
   {
     file { $enablefile:
-      ensure => '/etc/php5/mods-available/maxminddb.ini',
+      ensure => link,
+      target => '/etc/php5/mods-available/maxminddb.ini',
     }
   }
 
