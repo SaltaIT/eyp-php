@@ -1,5 +1,7 @@
 # php
 
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+
 #### Table of Contents
 
 1. [Overview](#overview)
