@@ -54,7 +54,7 @@ class php::apache (
     file { "${confbase}/php.ini":
       ensure => $customini,
       force  => true,
-      notify => Service['apache2'],
+      notify => Class['apache::service'],
     }
   }
   else
@@ -65,7 +65,7 @@ class php::apache (
       group   => 'root',
       mode    => '0644',
       content => template('php/phpini.erb'),
-      notify  => Service['apache2'],
+      notify  => Class['apache::service'],
       }
   }
 }
