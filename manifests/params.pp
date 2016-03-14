@@ -60,7 +60,6 @@ class php::params () {
               $phpdependencies=['php-pear', 'php-http']
               $phpfpmpackage=[ 'php5-fpm', 'libfcgi0ldbl' ]
               $phpcli=[ 'php5-cli' ]
-              $phpapachepackage=[ 'libapache2-mod-php5' ]
               $user='www-data'
               $group='www-data'
               $confbase='/etc/php5/'
