@@ -49,10 +49,6 @@ class php::apache (
     ntteam::tag{ 'phpapache': }
   }
 
-  package { $php::params::phpapachepackage:
-    ensure => 'installed',
-  }
-
   if($customini)
   {
     file { "${confbase}/php.ini":
@@ -70,7 +66,6 @@ class php::apache (
       mode    => '0644',
       content => template('php/phpini.erb'),
       notify  => Service['apache2'],
-      require => Package[$php::params::phpapachepackage],
       }
   }
 }
