@@ -1,5 +1,9 @@
 # php
 
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+
+**AtlasIT-AM/eyp-php**: [![Build Status](https://travis-ci.org/AtlasIT-AM/eyp-php.png?branch=master)](https://travis-ci.org/AtlasIT-AM/eyp-php)
+
 #### Table of Contents
 
 1. [Overview](#overview)
