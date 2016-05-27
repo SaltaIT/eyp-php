@@ -1,6 +1,6 @@
 {
   "name": "eyp-php",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "author": "eyp",
   "summary": "manages: php modules, pecl modules and php-fpm daemon",
   "license": "Apache-2.0",
