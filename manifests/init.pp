@@ -61,8 +61,9 @@ class php(
     if($customini)
     {
       file { "${confbase}/php.ini":
-      ensure => $customini,
-      force  => true,
+        ensure  => $customini,
+        force   => true,
+        require => Package[$php::params::phpcli],
       }
     }
     else
@@ -73,7 +74,8 @@ class php(
         group   => 'root',
         mode    => '0644',
         content => template('php/phpini.erb'),
-        }
+        require => Package[$php::params::phpcli],
+      }
     }
   }
 }
