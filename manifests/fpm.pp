@@ -18,7 +18,7 @@ define php::fpm (
                   $short_open_tag         = $php::params::short_open_tag_default,
                   $serialize_precision    = $php::params::serialize_precision_default,
                   $max_input_time         = $php::params::max_input_time_default,
-                  $errorlog               = $php::params::fpm_errorlog_default,
+                  $errorlog               = $php::params::fpm_error_log_default,
                   $session_save_path      = $php::params::session_save_path_default,
                   $session_gc_probability = $php::params::session_gc_probability_default,
                   #FPM
