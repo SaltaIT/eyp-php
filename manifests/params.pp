@@ -46,6 +46,7 @@ class php::params () {
         default: { fail('Unsupported RHEL/CentOS version!')  }
       }
     }
+    'Debian':
     {
       case $::operatingsystem
       {
