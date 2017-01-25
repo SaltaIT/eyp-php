@@ -37,7 +37,7 @@ class php::params () {
       $confbase_cli='/etc/php5/cli'
       $confbase_fpm='/etc/php5/fpm'
       $pecl_dependencies=['php5-dev']
-
+      
       case $::operatingsystemrelease
       {
         /^[5-7].*$/:
