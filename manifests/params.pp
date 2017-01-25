@@ -10,7 +10,6 @@ class php::params () {
   $timezone_default='Europe/Andorra'
   $allowurlfopen_default='Off'
   $allowurlinclude_default='Off'
-  $customini_default=undef
   $max_input_vars_default='1000'
   $short_open_tag_default='Off'
   $serialize_precision_default='17'
