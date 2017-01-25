@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.2.6
+## 0.3.0
 
 * minor changes: lint
 * bugfix OS detection
