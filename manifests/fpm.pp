@@ -25,10 +25,6 @@ define php::fpm (
                   $processmax             = $php::params::processmax_default,
                   $processpriority        = $php::params::processpriority_default,
                 ) {
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ 'php::fpm': }
-  }
 
   validate_string($max_input_vars)
   validate_string($short_open_tag)

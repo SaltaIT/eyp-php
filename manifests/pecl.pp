@@ -8,11 +8,6 @@ define php::pecl  (
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ "php::pecl::${modulename}": }
-  }
-
   if($dependencies)
   {
     validate_array($dependencies)

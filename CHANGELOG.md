@@ -4,3 +4,4 @@
 
 * minor changes: lint
 * bugfix OS detection
+* dropped tag support

@@ -2,10 +2,6 @@ define php::twig(
                   $installdir='/usr/local/src/twig',
                   $enablefile=undef,
                 ) {
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ 'php::module::twig': }
-  }
 
   Exec {
     path => '/usr/sbin:/usr/bin:/sbin:/bin',

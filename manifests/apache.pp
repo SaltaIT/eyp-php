@@ -23,10 +23,6 @@ class php::apache (
   $session_gc_probability=$php::params::session_gc_probability_default,
   ) inherits php::params{
 
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ 'php::apache': }
-  }
 
   validate_string($max_input_vars)
   validate_string($short_open_tag)

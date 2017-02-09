@@ -4,11 +4,6 @@ define php::module(
                     $ensure='installed', #TODO
                   ) {
 
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ "php::module::${modulename}": }
-  }
-
   if($modulename=='php5-phalcon')
   {
     case $::osfamily

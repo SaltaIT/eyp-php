@@ -3,11 +3,6 @@ define php::maxmind(
                     $enablefile=undef,
                   ) {
 
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ 'php::module::maxmind': }
-  }
-
   Exec {
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }

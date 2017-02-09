@@ -26,11 +26,6 @@ class php(
           $session_gc_probability=$php::params::session_gc_probability_default,
         ) inherits php::params{
 
-
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ 'php': }
-  }
   validate_string($max_input_vars)
   validate_string($short_open_tag)
   validate_string($serialize_precision)
