@@ -22,14 +22,16 @@ define php::maxmind(
   {
     'Debian':
     {
-      $os_specific_dependencies=Apt::Ppa['ppa:maxmind/ppa']
+      apt::ppa { 'ppa:maxmind/ppa':
+        ensure => 'present',
+        before => Package[$maxmind_dependencies],
+      }
     }
     default: { fail("Unsupported OS family: ${::osfamily}")}
   }
 
   package{ $maxmind_dependencies:
       ensure  => 'installed',
-      require => $os_specific_dependencies,
   }
 
   exec { "mkdir_p_${installdir}":
