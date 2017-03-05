@@ -2,7 +2,8 @@
 
 ## 0.4.0
 
-* removed puppetlabs-apt dependency (work in progress)
+* removed puppetlabs-apt, using **eyp-apt**
+* improved php::module['phalcon'] support by automatically adding the **PPA**
 
 ## 0.3.0
 

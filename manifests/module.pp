@@ -10,7 +10,12 @@ define php::module(
     {
       'Debian':
       {
-        $packagedependency=Apt::Ppa['ppa:phalcon/stable']
+        include ::apt
+
+        apt::ppa { 'ppa:phalcon/stable':
+          ensure => 'present',
+          before => Package[$modulename],
+        }
       }
       default: { fail("php5-phalcon unsupported on ${::osfamily}")}
     }
@@ -18,7 +23,6 @@ define php::module(
 
   package { $modulename:
     ensure  => 'installed',
-    require => $packagedependency,
   }
 
   if($enablefile)
