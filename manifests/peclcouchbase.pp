@@ -29,7 +29,7 @@ define php::peclcouchbase   (
               }
 
               apt::key { 'couchbase':
-                key        => '407D39EDE72067607FF1DA1CA3FAA648D9223EDA',
+                key        => '136CD3BA884E3CB0E44E7A5BE905C770CD406E62',
                 key_source => 'http://packages.couchbase.com/ubuntu/couchbase.key',
               }
 
