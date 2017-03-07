@@ -16,10 +16,7 @@ class php::params () {
   $max_input_time_default='60'
   $session_save_path_default='/var/lib/php5'
   $session_gc_probability_default='0'
-  #Apache
-  $apache_errorlog_default='/var/log/php5-apache.log'
-  #FPM
-  $fpm_error_log_default='/var/log/php5-fpm.log'
+
   $processmax_default='0'
   $processpriority_default='-19'
 
@@ -37,6 +34,9 @@ class php::params () {
       $confbase_cli='/etc/php5/cli'
       $confbase_fpm='/etc/php5/fpm'
       $pecl_dependencies=['php5-dev']
+
+      $fpm_error_log_default='/var/log/php5-fpm.log'
+      $apache_errorlog_default='/var/log/php5-apache.log'
 
       case $::operatingsystemrelease
       {
@@ -66,6 +66,25 @@ class php::params () {
               $confbase_fpm='/etc/php5/fpm'
               $confbase_apache='/etc/php5/apache2'
               $pecl_dependencies=['php5-dev']
+
+              $fpm_error_log_default='/var/log/php5-fpm.log'
+              $apache_errorlog_default='/var/log/php5-apache.log'
+            }
+            /^16.*$/:
+            {
+              $phpdependencies=['php-pear', 'php-http']
+              $phpfpmpackage=[ 'php-fpm', 'libfcgi0ldbl' ]
+              $phpcli=[ 'php7.0-cli' ]
+              $user='www-data'
+              $group='www-data'
+              $confbase='/etc/php7/'
+              $confbase_cli='/etc/php7/cli'
+              $confbase_fpm='/etc/php7/fpm'
+              $confbase_apache='/etc/php7/apache2'
+              $pecl_dependencies=['php7.0-dev']
+
+              $fpm_error_log_default='/var/log/php7-fpm.log'
+              $apache_errorlog_default='/var/log/php7-apache.log'
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }
