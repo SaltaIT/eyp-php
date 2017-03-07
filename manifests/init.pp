@@ -26,8 +26,6 @@ class php(
           $session_gc_probability=$php::params::session_gc_probability_default,
         ) inherits php::params{
 
-  fail('removed puppetlabs-apt dependency, please rework')
-
   validate_string($max_input_vars)
   validate_string($short_open_tag)
   validate_string($serialize_precision)

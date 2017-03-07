@@ -14,7 +14,6 @@ class php::params () {
   $short_open_tag_default='Off'
   $serialize_precision_default='17'
   $max_input_time_default='60'
-  $session_save_path_default='/var/lib/php5'
   $session_gc_probability_default='0'
 
   $processmax_default='0'
@@ -37,6 +36,8 @@ class php::params () {
 
       $fpm_error_log_default='/var/log/php5-fpm.log'
       $apache_errorlog_default='/var/log/php5-apache.log'
+
+      $session_save_path_default='/var/lib/php5'
 
       case $::operatingsystemrelease
       {
@@ -69,6 +70,8 @@ class php::params () {
 
               $fpm_error_log_default='/var/log/php5-fpm.log'
               $apache_errorlog_default='/var/log/php5-apache.log'
+
+              $session_save_path_default='/var/lib/php5'
             }
             /^16.*$/:
             {
@@ -77,14 +80,16 @@ class php::params () {
               $phpcli=[ 'php7.0-cli' ]
               $user='www-data'
               $group='www-data'
-              $confbase='/etc/php7/'
-              $confbase_cli='/etc/php7/cli'
-              $confbase_fpm='/etc/php7/fpm'
-              $confbase_apache='/etc/php7/apache2'
+              $confbase='/etc/php/7.0/'
+              $confbase_cli='/etc/php/7.0/cli'
+              $confbase_fpm='/etc/php/7.0/fpm'
+              $confbase_apache='/etc/php/7.0/apache2'
               $pecl_dependencies=['php7.0-dev']
 
               $fpm_error_log_default='/var/log/php7-fpm.log'
               $apache_errorlog_default='/var/log/php7-apache.log'
+
+              $session_save_path_default='/var/lib/php/sessions'
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }
