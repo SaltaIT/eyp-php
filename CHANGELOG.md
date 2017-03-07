@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.4.0
+## 0.4.1
 
 * removed puppetlabs-apt, using **eyp-apt**
 * improved php::module['phalcon'] and php::maxmind support by automatically adding the **PPA**
