@@ -1,9 +1,10 @@
 define php::enablemodule (
                             $instance,
+                            $ensure         = 'link',
                             $modulename     = $name,
                             $confbase       = $php::params::confbase,
                             $service_notify = undef,
-                            $priotity       = '99',
+                            $priority       = '99',
                           ) {
   if($service_notify!=undef)
   {
@@ -15,7 +16,8 @@ define php::enablemodule (
   }
 
   file { "${confbase}/${instance}/conf.d/${priotity}-${modulename}.ini":
-    ensure => "${confbase}/mods-available/${$modulename}.ini",
+    ensure => $ensure,
+    target => "${confbase}/mods-available/${$modulename}.ini",
     force  => true,
     notify => $service_to_notify,
   }

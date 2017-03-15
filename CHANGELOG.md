@@ -1,12 +1,16 @@
 # CHANGELOG
 
+## 0.4.4
+
+* **php::enablemodule** priority typo and improved puppet compatibility
+
 ## 0.4.3
 
-* php::enablemodule improved service notifications
+* **php::enablemodule** improved service notifications
 
 ## 0.4.2
 
-* added ioncube support
+* added **ioncube** support
 
 ## 0.4.1
 
