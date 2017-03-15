@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.2
+
+* added ioncube support
+
 ## 0.4.1
 
 * removed puppetlabs-apt, using **eyp-apt**
