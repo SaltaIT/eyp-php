@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.3
+
+* php::enablemodule improved service notifications
+
 ## 0.4.2
 
 * added ioncube support
