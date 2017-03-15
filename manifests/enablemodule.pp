@@ -1,9 +1,9 @@
 define php::enablemodule (
                             $instance,
-                            $modulename=$name,
-                            $confbase=$php::params::confbase,
-                            $service_notify=undef,
-                            $priotity='99',
+                            $modulename     = $name,
+                            $confbase       = $php::params::confbase,
+                            $service_notify = undef,
+                            $priotity       = '99',
                           ) {
   if($service_notify!=undef)
   {
