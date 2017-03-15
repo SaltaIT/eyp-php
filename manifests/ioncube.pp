@@ -46,7 +46,7 @@ class php::ioncube(
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => "extension=${basedir}/ioncube/ioncube_loader_lin_${php::params::phpversion}.so\n",
+    content => "zend_extension=${basedir}/ioncube/ioncube_loader_lin_${php::params::phpversion}.so\n",
     require => Exec['tar xzf ioncube_loaders'],
   }
 }
