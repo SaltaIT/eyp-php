@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.4.4
+## 0.4.5
 
 * **php::enablemodule** priority typo and improved puppet compatibility
 
