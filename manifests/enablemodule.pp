@@ -15,7 +15,7 @@ define php::enablemodule (
     $service_to_notify=undef
   }
 
-  file { "${confbase}/${instance}/conf.d/${priotity}-${modulename}.ini":
+  file { "${confbase}/${instance}/conf.d/${priority}-${modulename}.ini":
     ensure => $ensure,
     target => "${confbase}/mods-available/${$modulename}.ini",
     force  => true,
