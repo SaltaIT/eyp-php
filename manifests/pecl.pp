@@ -4,11 +4,14 @@ define php::pecl  (
         $logdir='/var/log/puppet',
         $enablefile=undef,
       ) {
+
   Exec {
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  if($dependencies)
+  include ::php
+
+  if($dependencies!=undef)
   {
     validate_array($dependencies)
 
@@ -34,12 +37,12 @@ define php::pecl  (
 
 
   exec { "pecl install ${modulename}":
-    command => "bash -c 'while :;do echo;done | pecl install ${modulename}' > ${logdir}/.pecl.install.${modulename}.log",
+    command => "bash -c 'while :;do echo;done | pecl install ${modulename}' > ${logdir}/pecl.install.${modulename}.log",
     require => Package[$pecl_exec_install_dependencies],
     unless  => "pecl list | grep -E \'\\b${modulename}\\b\'",
   }
 
-  file { "/etc/php5/mods-available/${modulename}.ini":
+  file { "${php::params::confbase}/mods-available/${modulename}.ini":
     ensure  => present,
     owner   => 'root',
     group   => 'root',
@@ -51,8 +54,8 @@ define php::pecl  (
   if($enablefile)
   {
     file { $enablefile:
-      ensure => link,
-      target => "/etc/php5/mods-available/${modulename}.ini",
+      ensure => 'link',
+      target => "${php::params::confbase}/mods-available/${modulename}.ini",
     }
   }
 

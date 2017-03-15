@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.6
+
+* improved compatibility for **php::pecl**
+
 ## 0.4.5
 
 * **php::enablemodule** priority typo and improved puppet compatibility
