@@ -43,6 +43,7 @@ class php::params () {
       {
         /^[5-7].*$/:
         {
+          $phpversion=undef
         }
         default: { fail('Unsupported RHEL/CentOS version!')  }
       }
@@ -72,6 +73,8 @@ class php::params () {
               $apache_errorlog_default='/var/log/php5-apache.log'
 
               $session_save_path_default='/var/lib/php5'
+
+              $phpversion=undef
             }
             /^16.*$/:
             {
@@ -90,6 +93,8 @@ class php::params () {
               $apache_errorlog_default='/var/log/php7-apache.log'
 
               $session_save_path_default='/var/lib/php/sessions'
+
+              $phpversion = '7.0'
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }
