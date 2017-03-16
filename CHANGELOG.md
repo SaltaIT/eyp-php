@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.8
+
+* install pecl dependencies
+
 ## 0.4.7
 
 * improved compatibility for **php::pecl**

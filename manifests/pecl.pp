@@ -23,9 +23,12 @@ define php::pecl(
 
   if($php::params::pecl_dependencies!=undef)
   {
-    package { $php::params::pecl_dependencies:
-      ensure => 'installed',
-      before => Exec["pecl install ${modulename}"],
+    if(!defined(Package[$php::params::pecl_dependencies]))
+    {
+      package { $php::params::pecl_dependencies:
+        ensure => 'installed',
+        before => Exec["pecl install ${modulename}"],
+      }
     }
   }
 
