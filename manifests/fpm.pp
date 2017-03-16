@@ -45,11 +45,6 @@ define php::fpm (
   validate_integer($processmax, 0)
   validate_integer($processpriority, 20, -19)
 
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ 'phpfpm': }
-  }
-
   package { $php::params::phpfpmpackage:
     ensure => 'installed',
   }

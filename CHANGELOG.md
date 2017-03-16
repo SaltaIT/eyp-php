@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.10
+
+* dropped deprecated tag support
+
 ## 0.4.9
 
 * deleting pecl install log file

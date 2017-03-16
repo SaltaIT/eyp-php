@@ -40,11 +40,6 @@ class php::apache (
 
   validate_re($php_loglevel, [ '^alert$', '^error$', '^warning$', '^notice$', '^debug$' ], "Not a valid loglevel: ${php_loglevel}")
 
-  if defined(Class['ntteam'])
-  {
-    ntteam::tag{ 'phpapache': }
-  }
-
   if($customini)
   {
     file { "${confbase}/php.ini":
