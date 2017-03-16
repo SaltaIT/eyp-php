@@ -1,9 +1,5 @@
 # CHANGELOG
 
-## 0.4.10
-
-* pkgconf required to install pecl modules
-
 ## 0.4.9
 
 * deleting pecl install log file

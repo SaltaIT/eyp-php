@@ -87,7 +87,7 @@ class php::params () {
               $confbase_cli='/etc/php/7.0/cli'
               $confbase_fpm='/etc/php/7.0/fpm'
               $confbase_apache='/etc/php/7.0/apache2'
-              $pecl_dependencies=[ 'php7.0-dev', 'pkgconf' ]
+              $pecl_dependencies=['php7.0-dev']
 
               $fpm_error_log_default='/var/log/php7-fpm.log'
               $apache_errorlog_default='/var/log/php7-apache.log'
