@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.9
+
+* deleting pecl install log file
+
 ## 0.4.8
 
 * install pecl dependencies
