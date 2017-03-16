@@ -33,7 +33,7 @@ define php::pecl(
   }
 
   exec { "pecl install ${modulename}":
-    command => "bash -c 'while :;do echo;done | pecl install ${modulename}'",
+    command => "bash -c 'yes \$'\\n' | pecl install ${modulename}'",
     unless  => "pecl list | grep -E \'\\b${modulename}\\b\'",
   }
 

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.11
+
+* changed **while true** to **yes** for pecl install
+
 ## 0.4.10
 
 * dropped deprecated tag support
