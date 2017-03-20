@@ -1,0 +1,7 @@
+      "<%= @host_name %>": {
+        "host": "<%= @host %>",
+        <%- if defined?(@socket) -%>
+        "socket": "<%= @socket %>"
+        <%- else -%>
+        "port": "<%= @port %>"
+      },
