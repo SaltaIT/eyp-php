@@ -61,6 +61,35 @@ fpmpool:
     maxchildren: 30
     maxspareservers: 6
 ```
+mysqlns_ms example:
+```puppet
+class{ 'php::mysqlnd_ms': }
+
+php::mysqlnd_ms::datasource { "ndtest":
+}
+
+php::mysqlnd_ms::master { "master0":
+  datasource_name => 'ndtest',
+}
+
+php::mysqlnd_ms::slave { "slave1":
+  datasource_name => 'ndtest',
+}
+
+php::mysqlnd_ms::slave { "slave2":
+  datasource_name => 'ndtest',
+}
+
+php::enablemodule { 'mysqlnd cli':
+  modulename => 'mysqlnd',
+  instance => 'cli',
+}
+
+php::enablemodule { 'mysqlnd apache':
+  modulename => 'mysqlnd',
+  instance => 'apache2',
+}
+```
 
 ## Usage
 
