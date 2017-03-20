@@ -13,6 +13,7 @@ class php::mysqlnd_ms(
   include ::php::mysqlnd
 
   php::pecl { 'mysqlnd_ms':
+    manage_ini => false,
   }
 
   file { "${php::params::confbase}/mods-available/mysqlnd_ms.ini":
@@ -21,10 +22,11 @@ class php::mysqlnd_ms(
   }
 
   concat { "${php::params::confbase}/mysqlndms.conf":
-    ensure => 'present',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    require => Php::Pecl['mysqlnd_ms'],
   }
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms base":
