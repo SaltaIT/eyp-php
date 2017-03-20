@@ -10,28 +10,14 @@ class php::mysqlnd_ms(
                         $master_on_write  = true,
                       ) inherits php::params {
 
-  # concat en preivisio
-  concat { "${php::params::confbase}/mods-available/mysqlnd.ini":
-    ensure => 'present',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+  include ::php::mysqlnd
+
+  php::pecl { 'mysqlnd_ms':
   }
 
-  file { "${php::params::confbase}/mods-available/10-mysqlnd.ini":
-    ensure => 'absent',
-  }
-
-  concat::fragment{ "${php::params::confbase}/mods-available/mysqlnd ini":
-    target  => "${php::params::confbase}/mods-available/mysqlnd.ini",
-    order   => '01',
-    content => template("${module_name}/mysqlnd/mysqlndini.erb"),
-  }
-
-  concat::fragment{ "${php::params::confbase}/mods-available/mysqlnd MS":
-    target  => "${php::params::confbase}/mods-available/mysqlnd.ini",
-    order   => '10',
-    content => template("${module_name}/mysqlnd/ms.erb"),
+  file { "${php::params::confbase}/mods-available/mysqlnd_ms.ini":
+    ensure  => 'absent',
+    require => Php::Pecl['mysqlnd_ms'],
   }
 
   concat { "${php::params::confbase}/mysqlndms.conf":

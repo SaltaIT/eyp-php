@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.13
+
+* split **php::mysqlnd_ms** to have a general **php::mysqlnd** class
+
 ## 0.4.12
 
 * added mysqlnd_ms under puppet management

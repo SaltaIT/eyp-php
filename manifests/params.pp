@@ -83,7 +83,7 @@ class php::params () {
               $phpcli=[ 'php7.0-cli' ]
               $user='www-data'
               $group='www-data'
-              $confbase='/etc/php/7.0/'
+              $confbase='/etc/php/7.0'
               $confbase_cli='/etc/php/7.0/cli'
               $confbase_fpm='/etc/php/7.0/fpm'
               $confbase_apache='/etc/php/7.0/apache2'
