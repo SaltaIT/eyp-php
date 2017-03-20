@@ -34,7 +34,7 @@ define php::mysqlnd_ms::datasource(
                                     $datasource_name = $name,
                                   ) {
 
-  include ::php::mysqldnd_ms
+  include ::php::mysqlnd_ms
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms datasource ${datasource_name}":
     target  => "${php::params::confbase}/mysqlndms.conf",
