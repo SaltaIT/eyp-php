@@ -32,9 +32,15 @@ define php::pecl(
     }
   }
 
+  exec { "pecl ${modulename} pkg-config":
+    command => 'which pkg-config',
+    unless  => 'which pkg-config',
+  }
+
   exec { "pecl install ${modulename}":
     command => "bash -c 'yes \$'\\n' | pecl install ${modulename}'",
     unless  => "pecl list | grep -E \'\\b${modulename}\\b\'",
+    require => Exec["pecl ${modulename} pkg-config"],
   }
 
   file { "${php::params::confbase}/mods-available/${modulename}.ini":
