@@ -14,7 +14,7 @@ class php::mysqlnd_ms(
   concat { "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini":
     ensure => 'present',
     owner  => 'root',
-    grpup  => 'root',
+    group  => 'root',
     mode   => '0644',
   }
 
@@ -33,7 +33,7 @@ class php::mysqlnd_ms(
   concat { "${php::params::confbase}/mysqlndms.conf":
     ensure => 'present',
     owner  => 'root',
-    grpup  => 'root',
+    group  => 'root',
     mode   => '0644',
   }
 
