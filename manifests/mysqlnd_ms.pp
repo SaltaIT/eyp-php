@@ -11,21 +11,25 @@ class php::mysqlnd_ms(
                       ) inherits php::params {
 
   # concat en preivisio
-  concat { "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini":
+  concat { "${php::params::confbase}/mods-available/mysqlnd.ini":
     ensure => 'present',
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
   }
 
-  concat::fragment{ "${php::params::confbase}/mods-available/${priority}-mysqlnd ini":
-    target  => "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini",
+  file { "${php::params::confbase}/mods-available/10-mysqlnd ini":
+    ensure => 'absent',
+  }
+
+  concat::fragment{ "${php::params::confbase}/mods-available/mysqlnd ini":
+    target  => "${php::params::confbase}/mods-available/mysqlnd.ini",
     order   => '01',
     content => template("${module_name}/mysqlnd/mysqlndini.erb"),
   }
 
-  concat::fragment{ "${php::params::confbase}/mods-available/${priority}-mysqlnd MS":
-    target  => "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini",
+  concat::fragment{ "${php::params::confbase}/mods-available/mysqlnd MS":
+    target  => "${php::params::confbase}/mods-available/mysqlnd.ini",
     order   => '10',
     content => template("${module_name}/mysqlnd/ms.erb"),
   }
