@@ -14,7 +14,7 @@ class php::ioncube(
 
   exec { 'ioncube which wget':
     command => 'which wget',
-    unless => 'which wget',
+    unless  => 'which wget',
   }
 
   exec { "mkdir srcdir ${srcdir}":
