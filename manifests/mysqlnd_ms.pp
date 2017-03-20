@@ -19,13 +19,13 @@ class php::mysqlnd_ms(
   }
 
   concat::fragment{ "${php::params::confbase}/mods-available/${priority}-mysqlnd MS":
-    target  => "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini".
+    target  => "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini",
     order   => '01',
     content => template("${module_name}/mysqlnd/mysqlndini.erb"),
   }
 
   concat::fragment{ "${php::params::confbase}/mods-available/${priority}-mysqlnd MS":
-    target  => "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini".
+    target  => "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini",
     order   => '10',
     content => template("${module_name}/mysqlnd/ms.erb"),
   }
@@ -38,13 +38,13 @@ class php::mysqlnd_ms(
   }
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms base":
-    target  => "${php::params::confbase}/mysqlndms.conf".
+    target  => "${php::params::confbase}/mysqlndms.conf",
     order   => '00',
     content => "{\n",
   }
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms end":
-    target  => "${php::params::confbase}/mysqlndms.conf".
+    target  => "${php::params::confbase}/mysqlndms.conf",
     order   => '99',
     content => template("${module_name}/mysqlnd/ms/end.erb")
   }
