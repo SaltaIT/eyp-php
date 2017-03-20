@@ -51,7 +51,7 @@ define php::mysqlnd_ms::datasource(
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms master end ${datasource_name}":
     target  => "${php::params::confbase}/mysqlndms.conf",
     order   => "10-${datasource_name}-03",
-    content => "    },\n",
+    content => "    master end },\n",
   }
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms slave begin ${datasource_name}":
@@ -63,7 +63,7 @@ define php::mysqlnd_ms::datasource(
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms slave end ${datasource_name}":
     target  => "${php::params::confbase}/mysqlndms.conf",
     order   => "10-${datasource_name}-06",
-    content => "    },\n",
+    content => "    slave end},\n",
   }
 
 }
