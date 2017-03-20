@@ -1,0 +1,2 @@
+  "<%= @datasource_name %>": {
+    "master": {
