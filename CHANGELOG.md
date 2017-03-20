@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.12
+
+* added mysqlnd_ms under puppet management
+
 ## 0.4.11
 
 * changed **while true** to **yes** for pecl install
