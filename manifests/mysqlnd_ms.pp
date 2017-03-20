@@ -18,7 +18,7 @@ class php::mysqlnd_ms(
     mode   => '0644',
   }
 
-  concat::fragment{ "${php::params::confbase}/mods-available/${priority}-mysqlnd MS":
+  concat::fragment{ "${php::params::confbase}/mods-available/${priority}-mysqlnd ini":
     target  => "${php::params::confbase}/mods-available/${priority}-mysqlnd.ini",
     order   => '01',
     content => template("${module_name}/mysqlnd/mysqlndini.erb"),
