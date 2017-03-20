@@ -37,31 +37,31 @@ define php::mysqlnd_ms::datasource(
   include ::php::mysqldnd_ms
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms datasource ${datasource_name}":
-    target  => "${php::params::confbase}/mysqlndms.conf".
+    target  => "${php::params::confbase}/mysqlndms.conf",
     order   => "10-${datasource_name}-00",
     content => template("${module_name}/mysqlnd/ms/datasource.erb")
   }
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms master begin ${datasource_name}":
-    target  => "${php::params::confbase}/mysqlndms.conf".
+    target  => "${php::params::confbase}/mysqlndms.conf",
     order   => "10-${datasource_name}-01",
     content => "    \"master\": {\n",
   }
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms master end ${datasource_name}":
-    target  => "${php::params::confbase}/mysqlndms.conf".
+    target  => "${php::params::confbase}/mysqlndms.conf",
     order   => "10-${datasource_name}-03",
     content => "    },\n",
   }
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms slave begin ${datasource_name}":
-    target  => "${php::params::confbase}/mysqlndms.conf".
+    target  => "${php::params::confbase}/mysqlndms.conf",
     order   => "10-${datasource_name}-04",
     content => "    \"slave\": {\n",
   }
 
   concat::fragment{ "${php::params::confbase}/mysqlndms.conf nd_ms slave end ${datasource_name}":
-    target  => "${php::params::confbase}/mysqlndms.conf".
+    target  => "${php::params::confbase}/mysqlndms.conf",
     order   => "10-${datasource_name}-06",
     content => "    },\n",
   }
