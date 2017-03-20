@@ -18,7 +18,7 @@ class php::mysqlnd_ms(
     mode   => '0644',
   }
 
-  file { "${php::params::confbase}/mods-available/10-mysqlnd ini":
+  file { "${php::params::confbase}/mods-available/10-mysqlnd.ini":
     ensure => 'absent',
   }
 
