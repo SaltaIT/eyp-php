@@ -2,6 +2,7 @@ class php::fpm (
                   $confbase               = $php::params::confbase_fpm,
                   #PHP
                   $php_loglevel           = $php::params::php_loglevel_default,
+                  $fpm_loglevel           = 'notice',
                   $user                   = $php::params::user_default,
                   $group                  = $php::params::group_default,
                   $exposephp              = $php::params::exposephp_default,
