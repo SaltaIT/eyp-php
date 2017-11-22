@@ -53,6 +53,7 @@ class php::params () {
           $confbase='/etc'
           $confbase_cli='/etc'
           $confbase_fpm='/etc'
+          $phpini_fpm = 'php-fpm.ini'
           $pecl_dependencies=['php5-dev']
 
           $fpm_error_log_default='/var/log/php5-fpm.log'
@@ -95,7 +96,7 @@ class php::params () {
               $confbase='/etc/php5/'
               $confbase_cli='/etc/php5/cli'
               $confbase_fpm='/etc/php5/fpm'
-              $phpini_fpm = 'php-fpm.ini'
+              $phpini_fpm = 'php.ini'
               $confbase_apache='/etc/php5/apache2'
               $pecl_dependencies=['php5-dev']
 
