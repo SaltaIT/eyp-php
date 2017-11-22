@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.5.0
+
+* Added CentOS 7 compatibility
+* **INCOMPATIBLE CHANGES**:
+  - changed default listen for **php::fpmpool** to **/var/run/php-fpm.sock**
+  - renamed:
+    - **php::fpmpool** to **php::fpm::pool**
+
 ## 0.4.13
 
 * split **php::mysqlnd_ms** to have a general **php::mysqlnd** class
@@ -42,9 +50,9 @@
 
 ## 0.4.1
 
-* removed puppetlabs-apt, using **eyp-apt**
-* improved php::module['phalcon'] and php::maxmind support by automatically adding the **PPA**
-* added support for Ubuntu 16.04
+* removed puppetlabs-apt, code rewritten to be able to use **eyp-apt**
+* improved **php::module['phalcon']** and **php::maxmind** support by automatically adding the **PPA**
+* added support for **Ubuntu 16.04**
 
 ## 0.3.0
 

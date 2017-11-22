@@ -23,27 +23,50 @@ class php::params () {
   {
     'redhat':
     {
-      #TODO: definir valors per centos
-      $phpdependencies=['php']
-      $phpfpmpackage=[ 'php-fpm' ]
-      $phpcli=[ 'php-cli' ]
-      $user='apache'
-      $group='apache'
-      $confbase='/etc/php5/'
-      $confbase_cli='/etc/php5/cli'
-      $confbase_fpm='/etc/php5/fpm'
-      $pecl_dependencies=['php5-dev']
-
-      $fpm_error_log_default='/var/log/php5-fpm.log'
-      $apache_errorlog_default='/var/log/php5-apache.log'
-
-      $session_save_path_default='/var/lib/php5'
-
       case $::operatingsystemrelease
       {
-        /^[5-7].*$/:
+        /^7.*$/:
         {
+          # [root@centos7 opt]# rpm -ql php-fpm
+          # /etc/logrotate.d/php-fpm
+          # /etc/php-fpm.conf
+          # /etc/php-fpm.d
+          # /etc/php-fpm.d/www.conf
+          # /etc/sysconfig/php-fpm
+          # /run/php-fpm
+          # /usr/lib/systemd/system/php-fpm.service
+          # /usr/lib/tmpfiles.d/php-fpm.conf
+          # /usr/sbin/php-fpm
+          # /usr/share/doc/php-fpm-5.4.16
+          # /usr/share/doc/php-fpm-5.4.16/fpm_LICENSE
+          # /usr/share/doc/php-fpm-5.4.16/php-fpm.conf.default
+          # /usr/share/fpm
+          # /usr/share/fpm/status.html
+          # /usr/share/man/man8/php-fpm.8.gz
+          # /var/log/php-fpm
+          # [root@centos7 opt]#
+          $phpdependencies=['php']
+          $phpfpmpackage=[ 'php-fpm' ]
+          $phpcli=[ 'php-cli' ]
+          $user='apache'
+          $group='apache'
+          $confbase='/etc'
+          $confbase_cli='/etc'
+          $confbase_fpm='/etc'
+          $pecl_dependencies=['php5-dev']
+
+          $fpm_error_log_default='/var/log/php5-fpm.log'
+          $apache_errorlog_default='/var/log/php5-apache.log'
+
+          $session_save_path_default='/var/lib/php5'
+
           $phpversion=undef
+
+          $fpm_service_name = 'php-fpm'
+
+          $fpm_pid='/run/php-fpm/php-fpm.pid'
+
+          $custom_systemd=true
         }
         default: { fail('Unsupported RHEL/CentOS version!')  }
       }
@@ -54,6 +77,12 @@ class php::params () {
       {
         'Ubuntu':
         {
+          $fpm_service_name = 'php5-fpm'
+
+          $fpm_pid='/var/run/php5-fpm.pid'
+
+          $custom_systemd=false
+
           case $::operatingsystemrelease
           {
             /^14.*$/:
@@ -66,6 +95,7 @@ class php::params () {
               $confbase='/etc/php5/'
               $confbase_cli='/etc/php5/cli'
               $confbase_fpm='/etc/php5/fpm'
+              $phpini_fpm = 'php-fpm.ini'
               $confbase_apache='/etc/php5/apache2'
               $pecl_dependencies=['php5-dev']
 
@@ -86,6 +116,7 @@ class php::params () {
               $confbase='/etc/php/7.0'
               $confbase_cli='/etc/php/7.0/cli'
               $confbase_fpm='/etc/php/7.0/fpm'
+              $phpini_fpm = 'php.ini'
               $confbase_apache='/etc/php/7.0/apache2'
               $pecl_dependencies=['php7.0-dev']
 

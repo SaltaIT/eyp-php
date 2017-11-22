@@ -1,9 +1,9 @@
-define php::fpmpool(
+define php::fpm::pool(
                       $poolname             = $name,
-                      $confbase             = '/etc/php5/fpm',
+                      $confbase             = $php::params::confbase_fpm,
                       $user                 = $php::params::user,
                       $group                = $php::params::group,
-                      $listen               = '/var/run/php5-fpm.sock',
+                      $listen               = '/var/run/php-fpm.sock',
                       $socketmode           = '0660',
                       $allowedclients       = undef,
                       $phpstatus            = '/php-status',
@@ -21,6 +21,8 @@ define php::fpmpool(
                       $monitscripts         = true,
                       $monitscriptsbase     = '/usr/local/bin',
                     ) {
+  include ::php::fpm
+
   validate_absolute_path($confbase)
 
   if($pingpath)
@@ -50,7 +52,7 @@ define php::fpmpool(
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/fpmpoolconf.erb"),
-    notify  => Service['php5-fpm'],
+    notify  => Service[$php::params::fpm_service_name],
     require => Package[$php::params::phpfpmpackage],
   }
 
@@ -69,7 +71,8 @@ define php::fpmpool(
       owner  => 'root',
       group  => 'root',
       mode   => '0755',
-      source => "puppet:///modules/${module_name}/check_phpfpm_running_workers.sh",
+      source => file("${module_name}/check_phpfpm_running_workers.sh"),
+      #source => "puppet:///modules/${module_name}/check_phpfpm_running_workers.sh",
     }
 
   }

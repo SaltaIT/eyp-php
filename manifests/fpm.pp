@@ -1,5 +1,4 @@
-define php::fpm (
-                  $instancename           = $name,
+class php::fpm (
                   $confbase               = $php::params::confbase_fpm,
                   #PHP
                   $php_loglevel           = $php::params::php_loglevel_default,
@@ -24,7 +23,10 @@ define php::fpm (
                   #FPM
                   $processmax             = $php::params::processmax_default,
                   $processpriority        = $php::params::processpriority_default,
-                ) {
+                  $pidfile                = $php::params::fpm_pid,
+                ) inherits php::params {
+
+  include ::php
 
   validate_string($max_input_vars)
   validate_string($short_open_tag)
@@ -54,36 +56,63 @@ define php::fpm (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('php/phpfpmconf.erb'),
-    notify  => Service['php5-fpm'],
+    content => template("${module_name}/phpfpmconf.erb"),
+    notify  => Service[$php::params::fpm_service_name],
     require => Package[$php::params::phpfpmpackage],
   }
 
   if($customini)
   {
-    file { "${confbase}/php.ini":
+    file { "${confbase}/${php::params::phpini_fpm}":
       ensure => $customini,
       force  => true,
-      notify => Service['php5-fpm'],
+      notify => Service[$php::params::fpm_service_name],
     }
   }
   else
   {
-    file { "${confbase}/php.ini":
+    file { "${confbase}/${php::params::phpini_fpm}":
       ensure  => 'present',
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => template('php/phpini.erb'),
-      notify  => Service['php5-fpm'],
+      content => template("${module_name}/phpini.erb"),
+      notify  => Service[$php::params::fpm_service_name],
       require => Package[$php::params::phpfpmpackage],
     }
   }
 
-  #TODO:rewrite for multiple daemon
-  service {'php5-fpm':
+  # [root@centos7 etc]# cat /usr/lib/systemd/system/php-fpm.service
+  # [Unit]
+  # Description=The PHP FastCGI Process Manager
+  # After=syslog.target network.target
+  #
+  # [Service]
+  # Type=notify
+  # PIDFile=/run/php-fpm/php-fpm.pid
+  # EnvironmentFile=/etc/sysconfig/php-fpm
+  # ExecStart=/usr/sbin/php-fpm --nodaemonize
+  # ExecReload=/bin/kill -USR2 $MAINPID
+  # PrivateTmp=true
+  #
+  # [Install]
+  # WantedBy=multi-user.target
+  if($php::params::custom_systemd)
+  {
+    systemd::service { $php::params::fpm_service_name:
+      description       => 'The PHP FastCGI Process Manager',
+      after_units       => [ 'syslog.target network.target' ],
+      type              => 'notify',
+      environment_files => [ '/etc/sysconfig/php-fpm' ],
+      execstart         => "/usr/sbin/php-fpm --nodaemonize -c ${confbase}/${php::params::phpini_fpm}",
+      execreload        => '/bin/kill -USR2 $MAINPID',
+      private_tmp       => true,
+    }
+  }
+
+  service { $php::params::fpm_service_name:
     ensure  => 'running',
     enable  => true,
-    require => File[ [ "${confbase}/php-fpm.conf", "${confbase}/php.ini" ] ],
+    require => File[ [ "${confbase}/php-fpm.conf", "${confbase}/${php::params::phpini_fpm}" ] ],
   }
 }
