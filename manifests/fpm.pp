@@ -83,6 +83,15 @@ class php::fpm (
     }
   }
 
+  file { "${php::params::confbase_fpm}/${php::params::fpm_pooldir}":
+    ensure  => 'directory',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    recurse => true,
+    purge   => true,
+  }
+
   # [root@centos7 etc]# cat /usr/lib/systemd/system/php-fpm.service
   # [Unit]
   # Description=The PHP FastCGI Process Manager
