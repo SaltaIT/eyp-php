@@ -67,11 +67,11 @@ define php::fpm::pool(
     }
 
     file { "${monitscriptsbase}/check_phpfpm_running_workers":
-      ensure => 'present',
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0755',
-      source => file("${module_name}/check_phpfpm_running_workers.sh"),
+      ensure  => 'present',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      content => file("${module_name}/check_phpfpm_running_workers.sh"),
       #source => "puppet:///modules/${module_name}/check_phpfpm_running_workers.sh",
     }
 
