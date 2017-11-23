@@ -1,6 +1,7 @@
 define php::fpm::pool(
                       $poolname             = $name,
                       $confbase             = $php::params::confbase_fpm,
+                      $fpm_pooldir          = $php::params::fpm_pooldir,
                       $user                 = $php::params::user,
                       $group                = $php::params::group,
                       $listen               = "/var/run/php-fpm.${name}.sock",
@@ -46,7 +47,7 @@ define php::fpm::pool(
     validate_integer($maxspareservers, undef, 1)
   }
 
-  file { "${confbase}/pool.d/${poolname}.conf":
+  file { "${confbase}/${fpm_pooldir}/${poolname}.conf":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
