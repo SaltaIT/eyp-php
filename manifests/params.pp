@@ -54,6 +54,7 @@ class php::params () {
           $confbase_cli='/etc'
           $confbase_fpm='/etc'
           $phpini_fpm = 'php-fpm.ini'
+          $fpm_pooldir = 'php-fpm.d'
           $pecl_dependencies=['php5-dev']
 
           $fpm_error_log_default='/var/log/php5-fpm.log'
@@ -74,6 +75,8 @@ class php::params () {
     }
     'Debian':
     {
+      $fpm_pooldir = 'pool.d'
+
       case $::operatingsystem
       {
         'Ubuntu':
