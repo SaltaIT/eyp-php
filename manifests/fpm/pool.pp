@@ -3,7 +3,7 @@ define php::fpm::pool(
                       $confbase             = $php::params::confbase_fpm,
                       $user                 = $php::params::user,
                       $group                = $php::params::group,
-                      $listen               = '/var/run/php-fpm.sock',
+                      $listen               = "/var/run/php-fpm.${name}.sock",
                       $socketmode           = '0660',
                       $allowedclients       = undef,
                       $phpstatus            = '/php-status',
