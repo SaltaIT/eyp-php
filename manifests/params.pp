@@ -60,7 +60,7 @@ class php::params () {
           $fpm_error_log_default='/var/log/php5-fpm.log'
           $apache_errorlog_default='/var/log/php5-apache.log'
 
-          $session_save_path_default='/var/lib/php5'
+          $session_save_path_default='/var/lib/php/session/'
 
           $phpversion=undef
 
