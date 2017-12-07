@@ -55,7 +55,7 @@ class php::params () {
           $confbase_fpm='/etc'
           $phpini_fpm = 'php-fpm.ini'
           $fpm_pooldir = 'php-fpm.d'
-          $pecl_dependencies=['php5-dev']
+          $pecl_dependencies=['php-devel']
 
           $fpm_error_log_default='/var/log/php5-fpm.log'
           $apache_errorlog_default='/var/log/php5-apache.log'
