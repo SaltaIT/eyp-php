@@ -57,8 +57,8 @@ class php::params () {
           $fpm_pooldir = 'php-fpm.d'
           $pecl_dependencies=['php-devel']
 
-          $fpm_error_log_default='/var/log/php5-fpm.log'
-          $apache_errorlog_default='/var/log/php5-apache.log'
+          $fpm_error_log_default='/var/log/php-fpm.log'
+          $apache_errorlog_default='/var/log/php-apache.log'
 
           $session_save_path_default='/var/lib/php/session/'
 
