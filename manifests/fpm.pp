@@ -144,6 +144,6 @@ class php::fpm (
   service { $php::params::fpm_service_name:
     ensure  => 'running',
     enable  => true,
-    require => File[ [ "${confbase}/php-fpm.conf", "${confbase}/${php::params::phpini_fpm}" ] ],
+    require => [ Class['::systemd'], File[ [ "${confbase}/php-fpm.conf", "${confbase}/${php::params::phpini_fpm}" ] ] ],
   }
 }
