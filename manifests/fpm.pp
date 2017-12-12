@@ -71,7 +71,7 @@ class php::fpm (
     mode    => '0644',
     content => template("${module_name}/phpfpmconf.erb"),
     notify  => Service[$php::params::fpm_service_name],
-    require => Package[$php::params::phpfpmpackage],
+    require => Package[$actual_phpfpmpackage],
   }
 
   if($customini)
@@ -91,7 +91,7 @@ class php::fpm (
       mode    => '0644',
       content => template("${module_name}/phpini.erb"),
       notify  => Service[$php::params::fpm_service_name],
-      require => Package[$php::params::phpfpmpackage],
+      require => Package[$actual_phpfpmpackage],
     }
   }
 
