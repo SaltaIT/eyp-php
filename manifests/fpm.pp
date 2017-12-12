@@ -129,6 +129,7 @@ class php::fpm (
       execstart         => "/usr/sbin/php-fpm --nodaemonize -c ${confbase}/${php::params::phpini_fpm}",
       execreload        => '/bin/kill -USR2 $MAINPID',
       private_tmp       => true,
+      restart_sec       => '2',
     }
   }
 
