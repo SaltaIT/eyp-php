@@ -1,7 +1,7 @@
 define php::module(
-                    $modulename=$name,
-                    $enablefile=undef,
-                    $ensure='installed', #TODO
+                    $modulename = $name,
+                    $enablefile = undef,
+                    $ensure     = 'installed', #TODO
                   ) {
 
   if($modulename=='php5-phalcon')

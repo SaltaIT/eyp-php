@@ -1,6 +1,6 @@
 define php::twig(
-                  $installdir='/usr/local/src/twig',
-                  $enablefile=undef,
+                  $installdir = '/usr/local/src/twig',
+                  $enablefile = undef,
                 ) {
 
   Exec {

@@ -1,6 +1,6 @@
 define php::maxmind(
-                    $installdir='/usr/local/src/maxmind',
-                    $enablefile=undef,
+                    $installdir = '/usr/local/src/maxmind',
+                    $enablefile = undef,
                   ) {
 
   Exec {

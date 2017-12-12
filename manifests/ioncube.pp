@@ -1,5 +1,5 @@
 class php::ioncube(
-                    $srcdir = '/usr/local/src',
+                    $srcdir  = '/usr/local/src',
                     $basedir = '/opt',
                   ) inherits php::params {
   #

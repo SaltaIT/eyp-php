@@ -1,5 +1,5 @@
 define php::peclcouchbase   (
-        $enablefile=undef,
+        $enablefile = undef,
       ) {
 
   Exec {
