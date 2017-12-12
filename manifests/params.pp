@@ -45,7 +45,7 @@ class php::params () {
           # /usr/share/man/man8/php-fpm.8.gz
           # /var/log/php-fpm
           # [root@centos7 opt]#
-          $phpdependencies=['php']
+          $phpdependencies=[ 'php-common' ]
           $phpfpmpackage=[ 'php-fpm' ]
           $phpcli=[ 'php-cli' ]
           $user='apache'

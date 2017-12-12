@@ -21,7 +21,16 @@ define php::module(
     }
   }
 
-  package { $modulename:
+  if($php::use_php_package_prefix_ius==undef)
+  {
+    $actual_modulename=$modulename
+  }
+  else
+  {
+    $actual_modulename = regsubst($modulename, '^php[0-9.]*', $php::use_php_package_prefix_ius)
+  }
+
+  package { $actual_modulename:
     ensure  => 'installed',
   }
 

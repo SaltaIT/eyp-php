@@ -48,8 +48,20 @@ class php::fpm (
   validate_integer($processmax, 0)
   validate_integer($processpriority, 20, -19)
 
-  package { $php::params::phpfpmpackage:
-    ensure => 'installed',
+  include ::php
+
+  if($php::use_php_package_prefix_ius==undef)
+  {
+    $actual_phpfpmpackage=$php::params::phpfpmpackage
+  }
+  else
+  {
+    $actual_phpfpmpackage = regsubst($php::params::phpfpmpackage, '^php[0-9.]*', $php::use_php_package_prefix_ius)
+  }
+
+  package { $actual_phpfpmpackage:
+    ensure  => 'installed',
+    require => Class['::php'],
   }
 
   file { "${confbase}/php-fpm.conf":
