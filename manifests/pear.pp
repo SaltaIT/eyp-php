@@ -52,7 +52,7 @@ define php::pear(
       group   => 'root',
       mode    => '0644',
       content => "extension=${modulename}.so\n",
-      require => Exec["pecl install ${modulename}"],
+      require => Exec["pear install ${modulename}"],
     }
   }
 
