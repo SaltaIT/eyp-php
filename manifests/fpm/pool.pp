@@ -47,6 +47,15 @@ define php::fpm::pool(
     validate_integer($maxspareservers, undef, 1)
   }
 
+  if($php::use_php_package_prefix_ius==undef)
+  {
+    $actual_phpfpmpackage=$php::params::phpfpmpackage
+  }
+  else
+  {
+    $actual_phpfpmpackage = regsubst($php::params::phpfpmpackage, '^php[0-9.]*', $php::use_php_package_prefix_ius)
+  }
+
   file { "${confbase}/${fpm_pooldir}/${poolname}.conf":
     ensure  => 'present',
     owner   => 'root',
@@ -54,7 +63,7 @@ define php::fpm::pool(
     mode    => '0644',
     content => template("${module_name}/fpmpoolconf.erb"),
     notify  => Service[$php::params::fpm_service_name],
-    require => Package[$php::params::phpfpmpackage],
+    require => Package[$actual_phpfpmpackage],
   }
 
   if ($monitscripts)
