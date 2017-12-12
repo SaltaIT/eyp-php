@@ -121,15 +121,23 @@ class php::fpm (
   # WantedBy=multi-user.target
   if($php::params::custom_systemd)
   {
+
+    # Type=notify
+    # PIDFile=/run/php-fpm/php-fpm.pid
+    # ExecStart=/usr/sbin/php-fpm --nodaemonize
+    # ExecReload=/bin/kill -USR2 $MAINPID
+    # PrivateTmp=true
+
     systemd::service { $php::params::fpm_service_name:
       description       => 'The PHP FastCGI Process Manager',
       after_units       => [ 'syslog.target network.target' ],
       type              => 'notify',
-      environment_files => [ '/etc/sysconfig/php-fpm' ],
+      environment_files => [ '-/etc/sysconfig/php-fpm' ],
       execstart         => "/usr/sbin/php-fpm --nodaemonize -c ${confbase}/${php::params::phpini_fpm}",
       execreload        => '/bin/kill -USR2 $MAINPID',
       private_tmp       => true,
       restart_sec       => '2',
+      pid_file          => '/run/php-fpm/php-fpm.pid',
     }
   }
 
