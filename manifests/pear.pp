@@ -3,7 +3,7 @@ define php::pear(
                   $dependencies = undef,
                   $logdir       = '/var/log/puppet',
                   $enablefile   = undef,
-                  $manage_ini   = true,
+                  $manage_ini   = false,
                 ) {
 
   Exec {
