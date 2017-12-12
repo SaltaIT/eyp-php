@@ -3,6 +3,8 @@
 ## 0.5.0
 
 * Added CentOS 7 compatibility
+* Added support for **IUS repo**
+* Added supoort for pear packages using **php::pear**
 * **INCOMPATIBLE CHANGES**:
   - changed default listen for **php::fpmpool** to **/var/run/php-fpm.sock**
   - renamed:
