@@ -9,7 +9,7 @@ class php::mysqlnd() inherits php::params {
 
   # if concat fails for some reason, don't delete the default file
   file { "${php::params::confbase}/mods-available/10-mysqlnd.ini":
-    ensure => 'absent',
+    ensure  => 'absent',
     require => Concat["${php::params::confbase}/mods-available/mysqlnd.ini"],
   }
 
