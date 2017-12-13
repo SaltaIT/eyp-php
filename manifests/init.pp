@@ -2,7 +2,6 @@
 #
 class php(
           $phpcli                     = true,
-          $customini                  = undef,
           $confbase                   = $php::params::confbase_cli,
           #PHP
           $php_loglevel               = $php::params::php_loglevel_default,
