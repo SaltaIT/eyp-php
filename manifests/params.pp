@@ -69,6 +69,8 @@ class php::params () {
           $fpm_pid='/run/php-fpm/php-fpm.pid'
 
           $custom_systemd=true
+
+          $fpm_includedir = '/etc/php.d'
         }
         default: { fail('Unsupported RHEL/CentOS version!')  }
       }
@@ -109,6 +111,8 @@ class php::params () {
               $session_save_path_default='/var/lib/php5'
 
               $phpversion=undef
+
+              $fpm_includedir = undef
             }
             /^16.*$/:
             {
