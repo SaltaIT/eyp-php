@@ -54,6 +54,10 @@ class php(
   else
   {
     $actual_phpdependencies = regsubst($php::params::phpdependencies, '^php[0-9.]*', $use_php_package_prefix_ius)
+
+    Package[$actual_phpdependencies] {
+      require => Class['::ius'],
+    }
   }
 
   package { $actual_phpdependencies:
