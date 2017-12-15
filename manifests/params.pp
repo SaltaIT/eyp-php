@@ -93,7 +93,7 @@ class php::params () {
           {
             /^14.*$/:
             {
-              $phpdependencies=['php-pear', 'php-http']
+              $phpdependencies=[ 'php-pear', 'php-http' ]
               $phpfpmpackage=[ 'php5-fpm', 'libfcgi0ldbl' ]
               $phpcli=[ 'php5-cli' ]
               $user='www-data'
@@ -116,7 +116,7 @@ class php::params () {
             }
             /^16.*$/:
             {
-              $phpdependencies=['php-pear', 'php-http']
+              $phpdependencies=[ 'php-pear', 'php-http' ]
               $phpfpmpackage=[ 'php-fpm', 'libfcgi0ldbl' ]
               $phpcli=[ 'php7.0-cli' ]
               $user='www-data'
