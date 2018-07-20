@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.1
+
+* minor bugfix
+
 ## 0.5.0
 
 * Added CentOS 7 compatibility
