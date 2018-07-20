@@ -5,8 +5,8 @@ class php(
           $confbase                   = $php::params::confbase_cli,
           #PHP
           $php_loglevel               = $php::params::php_loglevel_default,
-          $user                       = $php::params::user_default,
-          $group                      = $php::params::group_default,
+          $user                       = $php::params::user,
+          $group                      = $php::params::group,
           $exposephp                  = $php::params::exposephp_default,
           $maxexecutiontime           = $php::params::maxexecutiontime_default,
           $memorylimit                = $php::params::memorylimit_default,
