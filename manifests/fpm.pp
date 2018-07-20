@@ -3,8 +3,8 @@ class php::fpm (
                   #PHP
                   $php_loglevel           = $php::params::php_loglevel_default,
                   $fpm_loglevel           = 'notice',
-                  $user                   = $php::params::user_default,
-                  $group                  = $php::params::group_default,
+                  $user                   = $php::params::user,
+                  $group                  = $php::params::group,
                   $exposephp              = $php::params::exposephp_default,
                   $maxexecutiontime       = $php::params::maxexecutiontime_default,
                   $memorylimit            = $php::params::memorylimit_default,
@@ -74,7 +74,7 @@ class php::fpm (
     require => Package[$actual_phpfpmpackage],
   }
 
-  if($customini)
+  if($customini!=undef)
   {
     file { "${confbase}/${php::params::phpini_fpm}":
       ensure => $customini,
