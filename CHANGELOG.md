@@ -6,7 +6,7 @@
 
 ## 0.5.0
 
-* Added CentOS 7 compatibility
+* Added CentOS 7 compatibility for **php::fpm**
 * Added support for **IUS repo**
 * Added supoort for pear packages using **php::pear**
 * **INCOMPATIBLE CHANGES**:
