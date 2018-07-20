@@ -1,7 +1,5 @@
 # php
 
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
-
 **NTTCom-MS/eyp-php**: [![Build Status](https://travis-ci.org/NTTCom-MS/eyp-php.png?branch=master)](https://travis-ci.org/NTTCom-MS/eyp-php)
 
 #### Table of Contents
