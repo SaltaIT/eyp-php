@@ -38,5 +38,11 @@
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [ "7" ]
     }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.8.0"
+    }
   ]
 }
