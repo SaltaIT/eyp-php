@@ -17,9 +17,7 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+php: cli, mod_php and php-fpm management
 
 ## Module Description
 
@@ -103,7 +101,13 @@ with things. (We are working on automating this section!)
 
 ## Limitations
 
-Tested on Ubuntu 14.04
+* Ubuntu:
+  * php-cli
+  * php-fpm
+  * mod_php
+* RedHat 7 and derivatives
+  * php-cli
+  * php-fpm
 
 ## Development
 
