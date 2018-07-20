@@ -21,13 +21,7 @@ php: cli, mod_php and php-fpm management
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This module can work alongside with **eyp-apache** to enable mod_php
 
 ## Setup
 
@@ -39,8 +33,6 @@ management, etc.) this is the time to mention it.
 * Can be in list or paragraph form.
 
 ### Setup Requirements
-
-This module requires pluginsync enabled and eyp/nsswitch module installed
 
 ### Beginning with php
 
