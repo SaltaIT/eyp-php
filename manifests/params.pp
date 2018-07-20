@@ -15,6 +15,7 @@ class php::params () {
   $serialize_precision_default='17'
   $max_input_time_default='60'
   $session_gc_probability_default='0'
+  $customini_default=undef
 
   $processmax_default='0'
   $processpriority_default='-19'

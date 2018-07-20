@@ -68,7 +68,7 @@ class php(
   {
     if($use_php_package_prefix_ius==undef)
     {
-      $actual_phpcli=$php::params::phpdependencies
+      $actual_phpcli=$php::params::phpcli
     }
     else
     {
@@ -80,7 +80,7 @@ class php(
       require => Package[$actual_phpdependencies],
     }
 
-    if($customini)
+    if($customini!=undef)
     {
       file { "${confbase}/php.ini":
         ensure  => $customini,
