@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.1
+
+* added CentOS 6 support on **php::apache**
+
 ## 0.5.0
 
 * Added CentOS 7 compatibility for **php::fpm**

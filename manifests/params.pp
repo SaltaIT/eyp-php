@@ -24,8 +24,52 @@ class php::params () {
   {
     'redhat':
     {
+      $phpdependencies=[ 'php-common' ]
+      $phpcli=[ 'php-cli' ]
+      $user='apache'
+      $group='apache'
+      $confbase='/etc'
+      $confbase_cli='/etc'
+      $confbase_fpm='/etc'
+      $pecl_dependencies=['php-devel']
+      $fpm_error_log_default='/var/log/php-fpm.log'
+      $apache_errorlog_default='/var/log/php-apache.log'
+
+      $session_save_path_default='/var/lib/php/session/'
+
+      $phpversion=undef
       case $::operatingsystemrelease
       {
+        /^6.*$/:
+        {
+          # [root@centos7 opt]# rpm -ql php-fpm
+          # /etc/logrotate.d/php-fpm
+          # /etc/php-fpm.conf
+          # /etc/php-fpm.d
+          # /etc/php-fpm.d/www.conf
+          # /etc/sysconfig/php-fpm
+          # /run/php-fpm
+          # /usr/lib/systemd/system/php-fpm.service
+          # /usr/lib/tmpfiles.d/php-fpm.conf
+          # /usr/sbin/php-fpm
+          # /usr/share/doc/php-fpm-5.4.16
+          # /usr/share/doc/php-fpm-5.4.16/fpm_LICENSE
+          # /usr/share/doc/php-fpm-5.4.16/php-fpm.conf.default
+          # /usr/share/fpm
+          # /usr/share/fpm/status.html
+          # /usr/share/man/man8/php-fpm.8.gz
+          # /var/log/php-fpm
+          # [root@centos7 opt]#
+          $phpfpmpackage=[ 'php-fpm' ]
+          $phpini_fpm = 'php-fpm.ini'
+          $fpm_pooldir = 'php-fpm.d'
+          $fpm_service_name = 'php-fpm'
+          $fpm_pid='/run/php-fpm/php-fpm.pid'
+
+          $custom_systemd=false
+
+          $fpm_includedir = '/etc/php.d'
+        }
         /^7.*$/:
         {
           # [root@centos7 opt]# rpm -ql php-fpm
@@ -46,27 +90,10 @@ class php::params () {
           # /usr/share/man/man8/php-fpm.8.gz
           # /var/log/php-fpm
           # [root@centos7 opt]#
-          $phpdependencies=[ 'php-common' ]
           $phpfpmpackage=[ 'php-fpm' ]
-          $phpcli=[ 'php-cli' ]
-          $user='apache'
-          $group='apache'
-          $confbase='/etc'
-          $confbase_cli='/etc'
-          $confbase_fpm='/etc'
           $phpini_fpm = 'php-fpm.ini'
           $fpm_pooldir = 'php-fpm.d'
-          $pecl_dependencies=['php-devel']
-
-          $fpm_error_log_default='/var/log/php-fpm.log'
-          $apache_errorlog_default='/var/log/php-apache.log'
-
-          $session_save_path_default='/var/lib/php/session/'
-
-          $phpversion=undef
-
           $fpm_service_name = 'php-fpm'
-
           $fpm_pid='/run/php-fpm/php-fpm.pid'
 
           $custom_systemd=true
