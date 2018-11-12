@@ -29,7 +29,6 @@
 #               }
 #         }
 #     },
-
 define php::mysqlnd_ms::datasource(
                                     $datasource_name = $name,
                                   ) {
