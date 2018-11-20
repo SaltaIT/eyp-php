@@ -1,7 +1,7 @@
 class php::fpm (
                   $confbase                   = $php::params::confbase_fpm,
                   #PHP
-                  $php_loglevel               = $php::params::php_loglevel_default,
+                  $php_loglevel               = 'notice',
                   $fpm_loglevel               = 'notice',
                   $user                       = $php::params::user,
                   $group                      = $php::params::group,
@@ -18,7 +18,7 @@ class php::fpm (
                   $short_open_tag             = false,
                   $serialize_precision        = '17',
                   $max_input_time             = '60',
-                  $errorlog                   = $php::params::fpm_error_log_default,
+                  $error_log                  = $php::params::fpm_error_log_default,
                   $session_save_path          = $php::params::session_save_path_default,
                   $session_gc_probability     = '0',
                   $use_php_package_prefix_ius = undef,
@@ -26,20 +26,10 @@ class php::fpm (
                   $magic_quotes_runtime       = undef,
                   $magic_quotes_sybase        = undef,
                   #FPM
-                  $processmax                 = $php::params::processmax_default,
-                  $processpriority            = $php::params::processpriority_default,
+                  $process_max                = '0',
+                  $process_priority           = '-19',
                   $pidfile                    = $php::params::fpm_pid,
                 ) inherits php::params {
-
-  include ::php
-
-  validate_absolute_path($confbase)
-  validate_absolute_path($errorlog)
-
-  validate_re($php_loglevel, [ '^alert$', '^error$', '^warning$', '^notice$', '^debug$' ], "Not a valid loglevel: ${php_loglevel}")
-
-  validate_integer($processmax, 0)
-  validate_integer($processpriority, 20, -19)
 
   include ::php
 

@@ -4,7 +4,7 @@ class php(
           $phpcli                     = true,
           $confbase                   = $php::params::confbase_cli,
           # PHP
-          $php_loglevel               = $php::params::php_loglevel_default,
+          $php_loglevel               = 'notice',
           $user                       = $php::params::user,
           $group                      = $php::params::group,
           $expose_php                 = false,
@@ -28,11 +28,6 @@ class php(
           $magic_quotes_runtime       = undef,
           $magic_quotes_sybase        = undef,
         ) inherits php::params{
-
-  validate_absolute_path($confbase)
-  validate_absolute_path($errorlog)
-
-  validate_re($php_loglevel, [ '^alert$', '^error$', '^warning$', '^notice$', '^debug$' ], "Not a valid loglevel:     ${php_loglevel}")
 
   if($use_php_package_prefix_ius!=undef)
   {

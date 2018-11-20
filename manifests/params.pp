@@ -1,10 +1,5 @@
 class php::params () {
 
-  #PHP
-  $php_loglevel_default    = 'notice'
-  $processmax_default      = '0'
-  $processpriority_default = '-19'
-
   case $::osfamily
   {
     'redhat':

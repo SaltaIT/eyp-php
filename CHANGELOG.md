@@ -12,6 +12,8 @@
     - memory_limit
     - upload_max_filesize
     - post_max_size
+    - process_max
+    - process_priority
 
 ## 0.5.2
 
