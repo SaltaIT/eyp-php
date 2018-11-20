@@ -1,24 +1,9 @@
 class php::params () {
 
   #PHP
-  $php_loglevel_default='notice'
-  $exposephp_default='Off'
-  $maxexecutiontime_default='5'
-  $memorylimit_default='10M'
-  $maxupload_default='100M'
-  $maxpostsize_default='100M'
-  $timezone_default='Europe/Andorra'
-  $allowurlfopen_default='Off'
-  $allowurlinclude_default='Off'
-  $max_input_vars_default='1000'
-  $short_open_tag_default='Off'
-  $serialize_precision_default='17'
-  $max_input_time_default='60'
-  $session_gc_probability_default='0'
-  $customini_default=undef
-
-  $processmax_default='0'
-  $processpriority_default='-19'
+  $php_loglevel_default    = 'notice'
+  $processmax_default      = '0'
+  $processpriority_default = '-19'
 
   case $::osfamily
   {

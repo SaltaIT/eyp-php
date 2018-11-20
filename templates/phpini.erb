@@ -224,7 +224,7 @@ engine = On
 ; Development Value: Off
 ; Production Value: Off
 ; http://php.net/short-open-tag
-short_open_tag = <%= @short_open_tag %>
+short_open_tag = <%= scope.function_bool2onoff([@short_open_tag]) %>
 
 ; Allow ASP-style <% %> tags.
 ; http://php.net/asp-tags
@@ -388,7 +388,7 @@ zend.enable_gc = On
 ; threat in any way, but it makes it possible to determine whether you use PHP
 ; on your server or not.
 ; http://php.net/expose-php
-expose_php = <%= @exposephp %>
+expose_php = <%= scope.function_bool2onoff([@expose_php]) %>
 
 ;;;;;;;;;;;;;;;;;;;
 ; Resource Limits ;
@@ -397,7 +397,7 @@ expose_php = <%= @exposephp %>
 ; Maximum execution time of each script, in seconds
 ; http://php.net/max-execution-time
 ; Note: This directive is hardcoded to 0 for the CLI SAPI
-max_execution_time = <%= @maxexecutiontime %>
+max_execution_time = <%= @max_execution_time %>
 
 ; Maximum amount of time each script may spend parsing request data. It's a good
 ; idea to limit this time on productions servers in order to eliminate unexpectedly
@@ -418,7 +418,7 @@ max_input_vars = <%= @max_input_vars %>
 
 ; Maximum amount of memory a script may consume (128MB)
 ; http://php.net/memory-limit
-memory_limit = <%= @memorylimit %>
+memory_limit = <%= @memory_limit %>
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
@@ -599,7 +599,7 @@ html_errors = On
 ; Example:
 ;error_log = php_errors.log
 ; Log errors to syslog (Event Log on NT, not valid in Windows 95).
-error_log = <%= @errorlog %>
+error_log = <%= @error_log %>
 
 ;windows.show_crt_warning
 ; Default value: 0
@@ -685,7 +685,7 @@ auto_globals_jit = On
 ; Its value may be 0 to disable the limit. It is ignored if POST data reading
 ; is disabled through enable_post_data_reading.
 ; http://php.net/post-max-size
-post_max_size = <%= @maxpostsize %>
+post_max_size = <%= @post_max_size %>
 
 ; Automatically add files before PHP document.
 ; http://php.net/auto-prepend-file
@@ -817,7 +817,7 @@ file_uploads = On
 
 ; Maximum allowed size for uploaded files.
 ; http://php.net/upload-max-filesize
-upload_max_filesize = <%= @maxupload %>
+upload_max_filesize = <%= @upload_max_filesize %>
 
 ; Maximum number of files that can be uploaded via a single request
 max_file_uploads = 20
@@ -828,11 +828,11 @@ max_file_uploads = 20
 
 ; Whether to allow the treatment of URLs (like http:// or ftp://) as files.
 ; http://php.net/allow-url-fopen
-allow_url_fopen = <%= @allowurlfopen %>
+allow_url_fopen = <%= scope.function_bool2onoff([@short_open_tag]) %>
 
 ; Whether to allow include/require to open URLs (like http:// or ftp://) as files.
 ; http://php.net/allow-url-include
-allow_url_include = <%= @allowurlinclude %>
+allow_url_include = <%= scope.function_bool2onoff([@short_open_tag]) %>
 
 ; Define the anonymous ftp password (your email address). PHP's default setting
 ; for this is empty.

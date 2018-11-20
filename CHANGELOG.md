@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.6.0
+
+* **INCOMPATIBLE CHANGE**
+  - renamed **php** and **php::fpm** variables to match PHP's name:
+    - error_log
+    - allow_url_fopen
+    - allow_url_include
+    - expose_php
+    - max_execution_time
+    - memory_limit
+    - upload_max_filesize
+    - post_max_size
+
 ## 0.5.2
 
 * added magic_quotes variables
