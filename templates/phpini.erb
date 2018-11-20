@@ -1,17 +1,25 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; puppet managed file - DO NOT EDIT ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [PHP]
 
 ;;;;;;;;;;;;;;;;;;;
 ; About php.ini   ;
 ;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; THIS FILE IS MANAGED BY PUPPET - DO NOT EDIT ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
 ; PHP's initialization file, generally called php.ini, is responsible for
 ; configuring many of the aspects of PHP's behavior.
+
+<% if defined?(@magic_quotes_gpc) -%>
+magic_quotes_gpc = <%= scope.function_bool2onoff([@magic_quotes_gpc]) %>
+<% end -%>
+<% if defined?(@magic_quotes_runtime) -%>
+magic_quotes_runtime = <%= scope.function_bool2onoff([@magic_quotes_runtime]) %>
+<% end -%>
+<% if defined?(@magic_quotes_sybase) -%>
+magic_quotes_sybase = <%= scope.function_bool2onoff([@magic_quotes_sybase]) %>
+<% end -%>
 
 ; PHP attempts to find and load this configuration from a number of locations.
 ; The following is a summary of its search order:

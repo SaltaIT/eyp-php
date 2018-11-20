@@ -3,7 +3,7 @@
 class php(
           $phpcli                     = true,
           $confbase                   = $php::params::confbase_cli,
-          #PHP
+          # PHP
           $php_loglevel               = $php::params::php_loglevel_default,
           $user                       = $php::params::user,
           $group                      = $php::params::group,
@@ -24,6 +24,9 @@ class php(
           $session_save_path          = $php::params::session_save_path_default,
           $session_gc_probability     = $php::params::session_gc_probability_default,
           $use_php_package_prefix_ius = undef,
+          $magic_quotes_gpc           = undef,
+          $magic_quotes_runtime       = undef,
+          $magic_quotes_sybase        = undef,
         ) inherits php::params{
 
   validate_string($max_input_vars)

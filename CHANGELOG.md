@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.2
+
+* added magic_quotes variables
+
 ## 0.5.1
 
 * added CentOS 6 support on **php::apache**
