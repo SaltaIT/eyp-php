@@ -1,6 +1,6 @@
 {
   "name": "eyp-php",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "eyp",
   "summary": "php and php-fpm management",
   "license": "Apache-2.0",
@@ -10,7 +10,7 @@
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 4.6.0"},
     {"name":"eyp/ius","version_requirement":">= 0.1.0 < 0.2.0"},
-    {"name":"eyp/systemd","version_requirement":">= 0.1.47 < 0.2.0"},
+    {"name":"eyp/systemd","version_requirement":">= 0.1.47 < 0.3.0"},
     {"name":"eyp/apache","version_requirement":">= 0.3.0 < 0.7.0"},
     {"name":"eyp/eyplib","version_requirement":">= 0.1.0 < 0.2.0"}
   ],
