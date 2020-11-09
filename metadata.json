@@ -4,9 +4,9 @@
   "author": "eyp",
   "summary": "php and php-fpm management",
   "license": "Apache-2.0",
-  "source": "https://github.com/NTTCom-MS/eyp-php",
-  "project_page": "https://github.com/NTTCom-MS/eyp-php",
-  "issues_url": "https://github.com/NTTCom-MS/eyp-php/issues",
+  "source": "https://github.com/SaltaIT/eyp-php",
+  "project_page": "https://github.com/SaltaIT/eyp-php",
+  "issues_url": "https://github.com/SaltaIT/eyp-php/issues",
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 4.6.0"},
     {"name":"eyp/ius","version_requirement":">= 0.1.0 < 0.2.0"},
