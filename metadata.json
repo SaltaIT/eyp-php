@@ -1,7 +1,7 @@
 {
   "name": "eyp-php",
   "version": "0.6.1",
-  "author": "eyp",
+  "author": "Jordi Prats",
   "summary": "php and php-fpm management",
   "license": "Apache-2.0",
   "source": "https://github.com/SaltaIT/eyp-php",
