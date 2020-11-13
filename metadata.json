@@ -1,6 +1,6 @@
 {
   "name": "eyp-php",
-  "version": "0.6.1",
+  "version": "6.0.1",
   "author": "Jordi Prats",
   "summary": "php and php-fpm management",
   "license": "Apache-2.0",
