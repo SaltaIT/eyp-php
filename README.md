@@ -1,6 +1,6 @@
 # php
 
-**NTTCom-MS/eyp-php**: [![Build Status](https://travis-ci.org/NTTCom-MS/eyp-php.png?branch=master)](https://travis-ci.org/NTTCom-MS/eyp-php)
+**SaltaIT/eyp-php**: [![Build Status](https://travis-ci.org/SaltaIT/eyp-php.png?branch=master)](https://travis-ci.org/SaltaIT/eyp-php)
 
 #### Table of Contents
 
